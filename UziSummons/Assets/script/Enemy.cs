@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
     public float hp;
     bool isAlive = true;
     public Vector2 targetPosition;
+    
 
     // Use this for initialization
     void Start () {
@@ -46,13 +47,17 @@ public class Enemy : MonoBehaviour {
 	}
 
     protected virtual void UpdateAi()
+    {}
+
+    
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-
-    }
-
-    protected virtual void Shoot(GameObject target)
-    {
-
+        Debug.Log("COLL " + other.ToString());
+        if (other.tag == "PlayerProjectile") {
+            hp = hp - other.GetComponent<ProjectileScript>().damage;
+            Destroy(other);
+        }
     }
 }
 

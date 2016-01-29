@@ -6,6 +6,8 @@ public class ProjectileScript : MonoBehaviour {
 	public Vector2 Direction;
 	public float Speed = 25.0f;
 	public float lifetime = 2.0f;
+    public float damage = 20.0f;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -24,5 +26,5 @@ public class ProjectileScript : MonoBehaviour {
 	{
 		GetComponent<Rigidbody2D> ().velocity = direction * Speed;
 	}
-		
+
 }
