@@ -1,0 +1,634 @@
+fileFormatVersion: 2
+guid: 3ac509b946a1ed54398ccc2df995b04f
+timeCreated: 1454104727
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Foot
+    100002: Foot.001
+    100004: Hands
+    100006: Head
+    100008: Leg Lower
+    100010: Leg Lower.001
+    100012: Leg upper
+    100014: Leg upper.001
+    100016: Leg upper.002
+    100018: //RootNode
+    100020: Torso
+    400000: Foot
+    400002: Foot.001
+    400004: Hands
+    400006: Head
+    400008: Leg Lower
+    400010: Leg Lower.001
+    400012: Leg upper
+    400014: Leg upper.001
+    400016: Leg upper.002
+    400018: //RootNode
+    400020: Torso
+    2300000: Foot
+    2300002: Foot.001
+    2300004: Hands
+    2300006: Head
+    2300008: Leg Lower
+    2300010: Leg Lower.001
+    2300012: Leg upper
+    2300014: Leg upper.001
+    2300016: Leg upper.002
+    2300018: Torso
+    3300000: Foot
+    3300002: Foot.001
+    3300004: Hands
+    3300006: Head
+    3300008: Leg Lower
+    3300010: Leg Lower.001
+    3300012: Leg upper
+    3300014: Leg upper.001
+    3300016: Leg upper.002
+    3300018: Torso
+    4300000: Leg upper.002
+    4300002: Foot.001
+    4300004: Leg Lower.001
+    4300006: Leg upper.001
+    4300008: Foot
+    4300010: Leg Lower
+    4300012: Leg upper
+    4300014: Torso
+    4300016: Hands
+    4300018: Head
+    7400000: Leg upper.002|Foot 1.001Action
+    7400002: Leg upper.002|Foot 1.001Action.001
+    7400004: Leg upper.002|Foot 1.001Action.002
+    7400006: Leg upper.002|Foot 1Action
+    7400008: Leg upper.002|Foot 1Action.001
+    7400010: Leg upper.002|Foot 1Action.002
+    7400012: Leg upper.002|Foot.001Action
+    7400014: Leg upper.002|Foot.001Action.001
+    7400016: Leg upper.002|FootAction
+    7400018: Leg upper.002|FootAction.001
+    7400020: Leg upper.002|FootAction.002
+    7400022: Leg upper.002|HeadAction
+    7400024: Leg upper.002|HeadAction.001
+    7400026: Leg upper.002|LampAction
+    7400028: Leg upper.002|Leg Lower 1.001Action
+    7400030: Leg upper.002|Leg Lower 1.001Action.001
+    7400032: Leg upper.002|Leg Lower 1.001Action.002
+    7400034: Leg upper.002|Leg Lower 1Action
+    7400036: Leg upper.002|Leg Lower 1Action.001
+    7400038: Leg upper.002|Leg Lower 1Action.002
+    7400040: Leg upper.002|Leg Lower.001Action
+    7400042: Leg upper.002|Leg Lower.001Action.001
+    7400044: Leg upper.002|Leg LowerAction
+    7400046: Leg upper.002|Leg LowerAction.001
+    7400048: Leg upper.002|Leg LowerAction.002
+    7400050: Leg upper.002|Leg upper 1.001Action
+    7400052: Leg upper.002|Leg upper 1.001Action.001
+    7400054: Leg upper.002|Leg upper 1.001Action.002
+    7400056: Leg upper.002|Leg upper 1Action
+    7400058: Leg upper.002|Leg upper 1Action.001
+    7400060: Leg upper.002|Leg upper 1Action.002
+    7400062: Leg upper.002|Leg upper.001Action
+    7400064: Leg upper.002|Leg upper.002Action
+    7400066: Leg upper.002|Leg upper.002Action.001
+    7400068: Leg upper.002|Leg upperAction
+    7400070: Leg upper.002|Leg upperAction.001
+    7400072: Leg upper.002|Plane.001Action
+    7400074: Leg upper.002|Plane.001Action.001
+    7400076: Leg upper.002|Plane.002Action
+    7400078: Leg upper.002|Plane.003Action
+    7400080: Leg upper.002|Plane.003Action.001
+    7400082: Leg upper.002|Plane.004Action
+    7400084: Leg upper.002|Plane.005Action
+    7400086: Leg upper.002|Plane.005Action.001
+    7400088: Leg upper.002|Plane.006Action
+    7400090: Leg upper.002|Plane.006Action.001
+    7400092: Leg upper.002|PlaneAction
+    7400094: Leg upper.002|PlaneAction.001
+    7400096: Leg upper.002|PlaneAction.002
+    7400098: Leg upper.002|PlaneAction.003
+    7400100: Leg upper.002|TorsoAction
+    7400102: Foot.001|Foot 1.001Action
+    7400104: Foot.001|Foot 1.001Action.001
+    7400106: Foot.001|Foot 1.001Action.002
+    7400108: Foot.001|Foot 1Action
+    7400110: Foot.001|Foot 1Action.001
+    7400112: Foot.001|Foot 1Action.002
+    7400114: Foot.001|Foot.001Action
+    7400116: Foot.001|Foot.001Action.001
+    7400118: Foot.001|FootAction
+    7400120: Foot.001|FootAction.001
+    7400122: Foot.001|FootAction.002
+    7400124: Foot.001|HeadAction
+    7400126: Foot.001|HeadAction.001
+    7400128: Foot.001|LampAction
+    7400130: Foot.001|Leg Lower 1.001Action
+    7400132: Foot.001|Leg Lower 1.001Action.001
+    7400134: Foot.001|Leg Lower 1.001Action.002
+    7400136: Foot.001|Leg Lower 1Action
+    7400138: Foot.001|Leg Lower 1Action.001
+    7400140: Foot.001|Leg Lower 1Action.002
+    7400142: Foot.001|Leg Lower.001Action
+    7400144: Foot.001|Leg Lower.001Action.001
+    7400146: Foot.001|Leg LowerAction
+    7400148: Foot.001|Leg LowerAction.001
+    7400150: Foot.001|Leg LowerAction.002
+    7400152: Foot.001|Leg upper 1.001Action
+    7400154: Foot.001|Leg upper 1.001Action.001
+    7400156: Foot.001|Leg upper 1.001Action.002
+    7400158: Foot.001|Leg upper 1Action
+    7400160: Foot.001|Leg upper 1Action.001
+    7400162: Foot.001|Leg upper 1Action.002
+    7400164: Foot.001|Leg upper.001Action
+    7400166: Foot.001|Leg upper.002Action
+    7400168: Foot.001|Leg upper.002Action.001
+    7400170: Foot.001|Leg upperAction
+    7400172: Foot.001|Leg upperAction.001
+    7400174: Foot.001|Plane.001Action
+    7400176: Foot.001|Plane.001Action.001
+    7400178: Foot.001|Plane.002Action
+    7400180: Foot.001|Plane.003Action
+    7400182: Foot.001|Plane.003Action.001
+    7400184: Foot.001|Plane.004Action
+    7400186: Foot.001|Plane.005Action
+    7400188: Foot.001|Plane.005Action.001
+    7400190: Foot.001|Plane.006Action
+    7400192: Foot.001|Plane.006Action.001
+    7400194: Foot.001|PlaneAction
+    7400196: Foot.001|PlaneAction.001
+    7400198: Foot.001|PlaneAction.002
+    7400200: Foot.001|PlaneAction.003
+    7400202: Foot.001|TorsoAction
+    7400204: Leg Lower.001|Foot 1.001Action
+    7400206: Leg Lower.001|Foot 1.001Action.001
+    7400208: Leg Lower.001|Foot 1.001Action.002
+    7400210: Leg Lower.001|Foot 1Action
+    7400212: Leg Lower.001|Foot 1Action.001
+    7400214: Leg Lower.001|Foot 1Action.002
+    7400216: Leg Lower.001|Foot.001Action
+    7400218: Leg Lower.001|Foot.001Action.001
+    7400220: Leg Lower.001|FootAction
+    7400222: Leg Lower.001|FootAction.001
+    7400224: Leg Lower.001|FootAction.002
+    7400226: Leg Lower.001|HeadAction
+    7400228: Leg Lower.001|HeadAction.001
+    7400230: Leg Lower.001|LampAction
+    7400232: Leg Lower.001|Leg Lower 1.001Action
+    7400234: Leg Lower.001|Leg Lower 1.001Action.001
+    7400236: Leg Lower.001|Leg Lower 1.001Action.002
+    7400238: Leg Lower.001|Leg Lower 1Action
+    7400240: Leg Lower.001|Leg Lower 1Action.001
+    7400242: Leg Lower.001|Leg Lower 1Action.002
+    7400244: Leg Lower.001|Leg Lower.001Action
+    7400246: Leg Lower.001|Leg Lower.001Action.001
+    7400248: Leg Lower.001|Leg LowerAction
+    7400250: Leg Lower.001|Leg LowerAction.001
+    7400252: Leg Lower.001|Leg LowerAction.002
+    7400254: Leg Lower.001|Leg upper 1.001Action
+    7400256: Leg Lower.001|Leg upper 1.001Action.001
+    7400258: Leg Lower.001|Leg upper 1.001Action.002
+    7400260: Leg Lower.001|Leg upper 1Action
+    7400262: Leg Lower.001|Leg upper 1Action.001
+    7400264: Leg Lower.001|Leg upper 1Action.002
+    7400266: Leg Lower.001|Leg upper.001Action
+    7400268: Leg Lower.001|Leg upper.002Action
+    7400270: Leg Lower.001|Leg upper.002Action.001
+    7400272: Leg Lower.001|Leg upperAction
+    7400274: Leg Lower.001|Leg upperAction.001
+    7400276: Leg Lower.001|Plane.001Action
+    7400278: Leg Lower.001|Plane.001Action.001
+    7400280: Leg Lower.001|Plane.002Action
+    7400282: Leg Lower.001|Plane.003Action
+    7400284: Leg Lower.001|Plane.003Action.001
+    7400286: Leg Lower.001|Plane.004Action
+    7400288: Leg Lower.001|Plane.005Action
+    7400290: Leg Lower.001|Plane.005Action.001
+    7400292: Leg Lower.001|Plane.006Action
+    7400294: Leg Lower.001|Plane.006Action.001
+    7400296: Leg Lower.001|PlaneAction
+    7400298: Leg Lower.001|PlaneAction.001
+    7400300: Leg Lower.001|PlaneAction.002
+    7400302: Leg Lower.001|PlaneAction.003
+    7400304: Leg Lower.001|TorsoAction
+    7400306: Leg upper.001|Foot 1.001Action
+    7400308: Leg upper.001|Foot 1.001Action.001
+    7400310: Leg upper.001|Foot 1.001Action.002
+    7400312: Leg upper.001|Foot 1Action
+    7400314: Leg upper.001|Foot 1Action.001
+    7400316: Leg upper.001|Foot 1Action.002
+    7400318: Leg upper.001|Foot.001Action
+    7400320: Leg upper.001|Foot.001Action.001
+    7400322: Leg upper.001|FootAction
+    7400324: Leg upper.001|FootAction.001
+    7400326: Leg upper.001|FootAction.002
+    7400328: Leg upper.001|HeadAction
+    7400330: Leg upper.001|HeadAction.001
+    7400332: Leg upper.001|LampAction
+    7400334: Leg upper.001|Leg Lower 1.001Action
+    7400336: Leg upper.001|Leg Lower 1.001Action.001
+    7400338: Leg upper.001|Leg Lower 1.001Action.002
+    7400340: Leg upper.001|Leg Lower 1Action
+    7400342: Leg upper.001|Leg Lower 1Action.001
+    7400344: Leg upper.001|Leg Lower 1Action.002
+    7400346: Leg upper.001|Leg Lower.001Action
+    7400348: Leg upper.001|Leg Lower.001Action.001
+    7400350: Leg upper.001|Leg LowerAction
+    7400352: Leg upper.001|Leg LowerAction.001
+    7400354: Leg upper.001|Leg LowerAction.002
+    7400356: Leg upper.001|Leg upper 1.001Action
+    7400358: Leg upper.001|Leg upper 1.001Action.001
+    7400360: Leg upper.001|Leg upper 1.001Action.002
+    7400362: Leg upper.001|Leg upper 1Action
+    7400364: Leg upper.001|Leg upper 1Action.001
+    7400366: Leg upper.001|Leg upper 1Action.002
+    7400368: Leg upper.001|Leg upper.001Action
+    7400370: Leg upper.001|Leg upper.002Action
+    7400372: Leg upper.001|Leg upper.002Action.001
+    7400374: Leg upper.001|Leg upperAction
+    7400376: Leg upper.001|Leg upperAction.001
+    7400378: Leg upper.001|Plane.001Action
+    7400380: Leg upper.001|Plane.001Action.001
+    7400382: Leg upper.001|Plane.002Action
+    7400384: Leg upper.001|Plane.003Action
+    7400386: Leg upper.001|Plane.003Action.001
+    7400388: Leg upper.001|Plane.004Action
+    7400390: Leg upper.001|Plane.005Action
+    7400392: Leg upper.001|Plane.005Action.001
+    7400394: Leg upper.001|Plane.006Action
+    7400396: Leg upper.001|Plane.006Action.001
+    7400398: Leg upper.001|PlaneAction
+    7400400: Leg upper.001|PlaneAction.001
+    7400402: Leg upper.001|PlaneAction.002
+    7400404: Leg upper.001|PlaneAction.003
+    7400406: Leg upper.001|TorsoAction
+    7400408: Foot|Foot 1.001Action
+    7400410: Foot|Foot 1.001Action.001
+    7400412: Foot|Foot 1.001Action.002
+    7400414: Foot|Foot 1Action
+    7400416: Foot|Foot 1Action.001
+    7400418: Foot|Foot 1Action.002
+    7400420: Foot|Foot.001Action
+    7400422: Foot|Foot.001Action.001
+    7400424: Foot|FootAction
+    7400426: Foot|FootAction.001
+    7400428: Foot|FootAction.002
+    7400430: Foot|HeadAction
+    7400432: Foot|HeadAction.001
+    7400434: Foot|LampAction
+    7400436: Foot|Leg Lower 1.001Action
+    7400438: Foot|Leg Lower 1.001Action.001
+    7400440: Foot|Leg Lower 1.001Action.002
+    7400442: Foot|Leg Lower 1Action
+    7400444: Foot|Leg Lower 1Action.001
+    7400446: Foot|Leg Lower 1Action.002
+    7400448: Foot|Leg Lower.001Action
+    7400450: Foot|Leg Lower.001Action.001
+    7400452: Foot|Leg LowerAction
+    7400454: Foot|Leg LowerAction.001
+    7400456: Foot|Leg LowerAction.002
+    7400458: Foot|Leg upper 1.001Action
+    7400460: Foot|Leg upper 1.001Action.001
+    7400462: Foot|Leg upper 1.001Action.002
+    7400464: Foot|Leg upper 1Action
+    7400466: Foot|Leg upper 1Action.001
+    7400468: Foot|Leg upper 1Action.002
+    7400470: Foot|Leg upper.001Action
+    7400472: Foot|Leg upper.002Action
+    7400474: Foot|Leg upper.002Action.001
+    7400476: Foot|Leg upperAction
+    7400478: Foot|Leg upperAction.001
+    7400480: Foot|Plane.001Action
+    7400482: Foot|Plane.001Action.001
+    7400484: Foot|Plane.002Action
+    7400486: Foot|Plane.003Action
+    7400488: Foot|Plane.003Action.001
+    7400490: Foot|Plane.004Action
+    7400492: Foot|Plane.005Action
+    7400494: Foot|Plane.005Action.001
+    7400496: Foot|Plane.006Action
+    7400498: Foot|Plane.006Action.001
+    7400500: Foot|PlaneAction
+    7400502: Foot|PlaneAction.001
+    7400504: Foot|PlaneAction.002
+    7400506: Foot|PlaneAction.003
+    7400508: Foot|TorsoAction
+    7400510: Leg Lower|Foot 1.001Action
+    7400512: Leg Lower|Foot 1.001Action.001
+    7400514: Leg Lower|Foot 1.001Action.002
+    7400516: Leg Lower|Foot 1Action
+    7400518: Leg Lower|Foot 1Action.001
+    7400520: Leg Lower|Foot 1Action.002
+    7400522: Leg Lower|Foot.001Action
+    7400524: Leg Lower|Foot.001Action.001
+    7400526: Leg Lower|FootAction
+    7400528: Leg Lower|FootAction.001
+    7400530: Leg Lower|FootAction.002
+    7400532: Leg Lower|HeadAction
+    7400534: Leg Lower|HeadAction.001
+    7400536: Leg Lower|LampAction
+    7400538: Leg Lower|Leg Lower 1.001Action
+    7400540: Leg Lower|Leg Lower 1.001Action.001
+    7400542: Leg Lower|Leg Lower 1.001Action.002
+    7400544: Leg Lower|Leg Lower 1Action
+    7400546: Leg Lower|Leg Lower 1Action.001
+    7400548: Leg Lower|Leg Lower 1Action.002
+    7400550: Leg Lower|Leg Lower.001Action
+    7400552: Leg Lower|Leg Lower.001Action.001
+    7400554: Leg Lower|Leg LowerAction
+    7400556: Leg Lower|Leg LowerAction.001
+    7400558: Leg Lower|Leg LowerAction.002
+    7400560: Leg Lower|Leg upper 1.001Action
+    7400562: Leg Lower|Leg upper 1.001Action.001
+    7400564: Leg Lower|Leg upper 1.001Action.002
+    7400566: Leg Lower|Leg upper 1Action
+    7400568: Leg Lower|Leg upper 1Action.001
+    7400570: Leg Lower|Leg upper 1Action.002
+    7400572: Leg Lower|Leg upper.001Action
+    7400574: Leg Lower|Leg upper.002Action
+    7400576: Leg Lower|Leg upper.002Action.001
+    7400578: Leg Lower|Leg upperAction
+    7400580: Leg Lower|Leg upperAction.001
+    7400582: Leg Lower|Plane.001Action
+    7400584: Leg Lower|Plane.001Action.001
+    7400586: Leg Lower|Plane.002Action
+    7400588: Leg Lower|Plane.003Action
+    7400590: Leg Lower|Plane.003Action.001
+    7400592: Leg Lower|Plane.004Action
+    7400594: Leg Lower|Plane.005Action
+    7400596: Leg Lower|Plane.005Action.001
+    7400598: Leg Lower|Plane.006Action
+    7400600: Leg Lower|Plane.006Action.001
+    7400602: Leg Lower|PlaneAction
+    7400604: Leg Lower|PlaneAction.001
+    7400606: Leg Lower|PlaneAction.002
+    7400608: Leg Lower|PlaneAction.003
+    7400610: Leg Lower|TorsoAction
+    7400612: Leg upper|Foot 1.001Action
+    7400614: Leg upper|Foot 1.001Action.001
+    7400616: Leg upper|Foot 1.001Action.002
+    7400618: Leg upper|Foot 1Action
+    7400620: Leg upper|Foot 1Action.001
+    7400622: Leg upper|Foot 1Action.002
+    7400624: Leg upper|Foot.001Action
+    7400626: Leg upper|Foot.001Action.001
+    7400628: Leg upper|FootAction
+    7400630: Leg upper|FootAction.001
+    7400632: Leg upper|FootAction.002
+    7400634: Leg upper|HeadAction
+    7400636: Leg upper|HeadAction.001
+    7400638: Leg upper|LampAction
+    7400640: Leg upper|Leg Lower 1.001Action
+    7400642: Leg upper|Leg Lower 1.001Action.001
+    7400644: Leg upper|Leg Lower 1.001Action.002
+    7400646: Leg upper|Leg Lower 1Action
+    7400648: Leg upper|Leg Lower 1Action.001
+    7400650: Leg upper|Leg Lower 1Action.002
+    7400652: Leg upper|Leg Lower.001Action
+    7400654: Leg upper|Leg Lower.001Action.001
+    7400656: Leg upper|Leg LowerAction
+    7400658: Leg upper|Leg LowerAction.001
+    7400660: Leg upper|Leg LowerAction.002
+    7400662: Leg upper|Leg upper 1.001Action
+    7400664: Leg upper|Leg upper 1.001Action.001
+    7400666: Leg upper|Leg upper 1.001Action.002
+    7400668: Leg upper|Leg upper 1Action
+    7400670: Leg upper|Leg upper 1Action.001
+    7400672: Leg upper|Leg upper 1Action.002
+    7400674: Leg upper|Leg upper.001Action
+    7400676: Leg upper|Leg upper.002Action
+    7400678: Leg upper|Leg upper.002Action.001
+    7400680: Leg upper|Leg upperAction
+    7400682: Leg upper|Leg upperAction.001
+    7400684: Leg upper|Plane.001Action
+    7400686: Leg upper|Plane.001Action.001
+    7400688: Leg upper|Plane.002Action
+    7400690: Leg upper|Plane.003Action
+    7400692: Leg upper|Plane.003Action.001
+    7400694: Leg upper|Plane.004Action
+    7400696: Leg upper|Plane.005Action
+    7400698: Leg upper|Plane.005Action.001
+    7400700: Leg upper|Plane.006Action
+    7400702: Leg upper|Plane.006Action.001
+    7400704: Leg upper|PlaneAction
+    7400706: Leg upper|PlaneAction.001
+    7400708: Leg upper|PlaneAction.002
+    7400710: Leg upper|PlaneAction.003
+    7400712: Leg upper|TorsoAction
+    7400714: Torso|Foot 1.001Action
+    7400716: Torso|Foot 1.001Action.001
+    7400718: Torso|Foot 1.001Action.002
+    7400720: Torso|Foot 1Action
+    7400722: Torso|Foot 1Action.001
+    7400724: Torso|Foot 1Action.002
+    7400726: Torso|Foot.001Action
+    7400728: Torso|Foot.001Action.001
+    7400730: Torso|FootAction
+    7400732: Torso|FootAction.001
+    7400734: Torso|FootAction.002
+    7400736: Torso|HeadAction
+    7400738: Torso|HeadAction.001
+    7400740: Torso|LampAction
+    7400742: Torso|Leg Lower 1.001Action
+    7400744: Torso|Leg Lower 1.001Action.001
+    7400746: Torso|Leg Lower 1.001Action.002
+    7400748: Torso|Leg Lower 1Action
+    7400750: Torso|Leg Lower 1Action.001
+    7400752: Torso|Leg Lower 1Action.002
+    7400754: Torso|Leg Lower.001Action
+    7400756: Torso|Leg Lower.001Action.001
+    7400758: Torso|Leg LowerAction
+    7400760: Torso|Leg LowerAction.001
+    7400762: Torso|Leg LowerAction.002
+    7400764: Torso|Leg upper 1.001Action
+    7400766: Torso|Leg upper 1.001Action.001
+    7400768: Torso|Leg upper 1.001Action.002
+    7400770: Torso|Leg upper 1Action
+    7400772: Torso|Leg upper 1Action.001
+    7400774: Torso|Leg upper 1Action.002
+    7400776: Torso|Leg upper.001Action
+    7400778: Torso|Leg upper.002Action
+    7400780: Torso|Leg upper.002Action.001
+    7400782: Torso|Leg upperAction
+    7400784: Torso|Leg upperAction.001
+    7400786: Torso|Plane.001Action
+    7400788: Torso|Plane.001Action.001
+    7400790: Torso|Plane.002Action
+    7400792: Torso|Plane.003Action
+    7400794: Torso|Plane.003Action.001
+    7400796: Torso|Plane.004Action
+    7400798: Torso|Plane.005Action
+    7400800: Torso|Plane.005Action.001
+    7400802: Torso|Plane.006Action
+    7400804: Torso|Plane.006Action.001
+    7400806: Torso|PlaneAction
+    7400808: Torso|PlaneAction.001
+    7400810: Torso|PlaneAction.002
+    7400812: Torso|PlaneAction.003
+    7400814: Torso|TorsoAction
+    7400816: Hands|Foot 1.001Action
+    7400818: Hands|Foot 1.001Action.001
+    7400820: Hands|Foot 1.001Action.002
+    7400822: Hands|Foot 1Action
+    7400824: Hands|Foot 1Action.001
+    7400826: Hands|Foot 1Action.002
+    7400828: Hands|Foot.001Action
+    7400830: Hands|Foot.001Action.001
+    7400832: Hands|FootAction
+    7400834: Hands|FootAction.001
+    7400836: Hands|FootAction.002
+    7400838: Hands|HeadAction
+    7400840: Hands|HeadAction.001
+    7400842: Hands|LampAction
+    7400844: Hands|Leg Lower 1.001Action
+    7400846: Hands|Leg Lower 1.001Action.001
+    7400848: Hands|Leg Lower 1.001Action.002
+    7400850: Hands|Leg Lower 1Action
+    7400852: Hands|Leg Lower 1Action.001
+    7400854: Hands|Leg Lower 1Action.002
+    7400856: Hands|Leg Lower.001Action
+    7400858: Hands|Leg Lower.001Action.001
+    7400860: Hands|Leg LowerAction
+    7400862: Hands|Leg LowerAction.001
+    7400864: Hands|Leg LowerAction.002
+    7400866: Hands|Leg upper 1.001Action
+    7400868: Hands|Leg upper 1.001Action.001
+    7400870: Hands|Leg upper 1.001Action.002
+    7400872: Hands|Leg upper 1Action
+    7400874: Hands|Leg upper 1Action.001
+    7400876: Hands|Leg upper 1Action.002
+    7400878: Hands|Leg upper.001Action
+    7400880: Hands|Leg upper.002Action
+    7400882: Hands|Leg upper.002Action.001
+    7400884: Hands|Leg upperAction
+    7400886: Hands|Leg upperAction.001
+    7400888: Hands|Plane.001Action
+    7400890: Hands|Plane.001Action.001
+    7400892: Hands|Plane.002Action
+    7400894: Hands|Plane.003Action
+    7400896: Hands|Plane.003Action.001
+    7400898: Hands|Plane.004Action
+    7400900: Hands|Plane.005Action
+    7400902: Hands|Plane.005Action.001
+    7400904: Hands|Plane.006Action
+    7400906: Hands|Plane.006Action.001
+    7400908: Hands|PlaneAction
+    7400910: Hands|PlaneAction.001
+    7400912: Hands|PlaneAction.002
+    7400914: Hands|PlaneAction.003
+    7400916: Hands|TorsoAction
+    7400918: Head|Foot 1.001Action
+    7400920: Head|Foot 1.001Action.001
+    7400922: Head|Foot 1.001Action.002
+    7400924: Head|Foot 1Action
+    7400926: Head|Foot 1Action.001
+    7400928: Head|Foot 1Action.002
+    7400930: Head|Foot.001Action
+    7400932: Head|Foot.001Action.001
+    7400934: Head|FootAction
+    7400936: Head|FootAction.001
+    7400938: Head|FootAction.002
+    7400940: Head|HeadAction
+    7400942: Head|HeadAction.001
+    7400944: Head|LampAction
+    7400946: Head|Leg Lower 1.001Action
+    7400948: Head|Leg Lower 1.001Action.001
+    7400950: Head|Leg Lower 1.001Action.002
+    7400952: Head|Leg Lower 1Action
+    7400954: Head|Leg Lower 1Action.001
+    7400956: Head|Leg Lower 1Action.002
+    7400958: Head|Leg Lower.001Action
+    7400960: Head|Leg Lower.001Action.001
+    7400962: Head|Leg LowerAction
+    7400964: Head|Leg LowerAction.001
+    7400966: Head|Leg LowerAction.002
+    7400968: Head|Leg upper 1.001Action
+    7400970: Head|Leg upper 1.001Action.001
+    7400972: Head|Leg upper 1.001Action.002
+    7400974: Head|Leg upper 1Action
+    7400976: Head|Leg upper 1Action.001
+    7400978: Head|Leg upper 1Action.002
+    7400980: Head|Leg upper.001Action
+    7400982: Head|Leg upper.002Action
+    7400984: Head|Leg upper.002Action.001
+    7400986: Head|Leg upperAction
+    7400988: Head|Leg upperAction.001
+    7400990: Head|Plane.001Action
+    7400992: Head|Plane.001Action.001
+    7400994: Head|Plane.002Action
+    7400996: Head|Plane.003Action
+    7400998: Head|Plane.003Action.001
+    7401000: Head|Plane.004Action
+    7401002: Head|Plane.005Action
+    7401004: Head|Plane.005Action.001
+    7401006: Head|Plane.006Action
+    7401008: Head|Plane.006Action.001
+    7401010: Head|PlaneAction
+    7401012: Head|PlaneAction.001
+    7401014: Head|PlaneAction.002
+    7401016: Head|PlaneAction.003
+    7401018: Head|TorsoAction
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
