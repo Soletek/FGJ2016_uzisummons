@@ -8,9 +8,12 @@ public class Enemy : MonoBehaviour {
     public Vector2 targetPosition;
     public GameObject player;
     public float speedMod = 4.0F;
+    public AudioHandler audioHandler;
+
 
     // Use this for initialization
     void Start () {
+        if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         if (hp == 0) hp = 150F;
         player = GameObject.Find("Player"); // TODO from creation
 	}
@@ -70,6 +73,8 @@ public class Enemy : MonoBehaviour {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
             GetComponent<Rigidbody2D>().AddForce(other.GetComponent<Rigidbody2D>().velocity * 3F);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
+
+            audioHandler.PlaySound("BodyHit1");
         }
     }
 }

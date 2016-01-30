@@ -15,6 +15,11 @@ public class AudioHandler : MonoBehaviour {
 	
 	}
 
+    public void PlaySound(string clipName, float pitch = -1F)
+    {
+        PlaySound((AudioClip)Resources.Load("Audio/" + clipName), pitch);
+    }
+
     public void PlaySound(AudioClip clip, float pitch = -1F)
     {
         AudioSource sound = Instantiate(audioPrefab).GetComponent<AudioSource>();

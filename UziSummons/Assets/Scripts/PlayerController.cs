@@ -33,11 +33,12 @@ public class PlayerController : MonoBehaviour {
 	Vector2 lastshot;
 
 	public GameObject projectile;
-
+    public AudioHandler audioHandler;
 
 	// Use this for initialization
 	void Start () {
-		Oldmouseloc = Input.mousePosition;
+        if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
+        Oldmouseloc = Input.mousePosition;
 		controllmethod = Controllmethod.Controller;
 	}
 	
@@ -109,16 +110,14 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) {
 				Isreloading = true;
 
-				//Reload sound 1
+                audioHandler.PlaySound("step1");
 
-				Reloadcooldown = Reloadrate;
+                Reloadcooldown = Reloadrate;
 				Sweetspotused = false;
 			} else if ((Input.GetMouseButton(0) || Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0) && Shootingcooldown <= 0 && !Isdashing) {
 				if (Clipsize > 0) {
 					Clipsize--;
 					if (!Input.GetMouseButton (0)) {
-
-						//Bullet shooting sound
 						Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
 						shootvector = shootvector + new Vector2 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
 						shootvector.Normalize ();
@@ -130,7 +129,6 @@ public class PlayerController : MonoBehaviour {
 						projectilescript.GiveDirection (shootvector);
 					} else {
 
-						//Bullet shooting sound
 						Vector3 mouse_pos;
 						Vector3 obj_pos;
 						float angle;
@@ -153,8 +151,8 @@ public class PlayerController : MonoBehaviour {
 				}
 					else{
 
-						//click sound from gun not having bullets
-					}
+                        audioHandler.PlaySound("click");
+                }
 
 			}
 
@@ -162,9 +160,10 @@ public class PlayerController : MonoBehaviour {
 		{
 			if ((Reloadsweetspotlocation - Reloadsweetspotleeway) <= Reloadcooldown && Reloadcooldown <= (Reloadsweetspotlocation + Reloadsweetspotleeway)) {
 
-				//Succesful spee reload YAY reloadgood effect
+                //Succesful spee reload YAY reloadgood effect
+                audioHandler.PlaySound("step2.good");
 
-				Isreloading = false;
+                Isreloading = false;
 				Clipsize = 60;
 				Reloadcooldown = 0;
 				Sweetspotused = true;
@@ -172,9 +171,10 @@ public class PlayerController : MonoBehaviour {
 			}
 			else 
 			{
-				//Shitty reload, ugly sound
+                //Shitty reload, ugly sound
+                audioHandler.PlaySound("step2.bad");
 
-				Sweetspotused = true;
+                Sweetspotused = true;
 				Reloadcooldown = Reloadcooldown + 1.0f;
 				if (Reloadcooldown > Reloadrate)
 				{
@@ -196,9 +196,10 @@ public class PlayerController : MonoBehaviour {
 			Reloadcooldown = Reloadcooldown - timer;
 			if (Reloadcooldown <= 0) {
 
-				//Reload complete, play a sound
+                //Reload complete, play a sound
+                audioHandler.PlaySound("step3");
 
-				Isreloading = false;
+                Isreloading = false;
 				Clipsize = 60;
 			}
 		}
@@ -241,7 +242,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.tag == "EnemyProjectile")
         {
-			//YOu take hit, ouch sound
+            //YOu take hit, ouch sound
+            audioHandler.PlaySound("BodyHit2");
 
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
