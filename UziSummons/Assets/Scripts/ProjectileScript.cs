@@ -34,6 +34,11 @@ public class ProjectileScript : MonoBehaviour {
 		GetComponent<Rigidbody2D> ().velocity = direction * Speed;
 	}
 
+	public void GiveDirection(Vector3 direction)
+	{
+		GetComponent<Rigidbody2D> ().velocity = direction * Speed;
+	}
+
     // called when projectile collides with another causing a particle effect
     public void ObjectCollision(int animationID = 0)
     {

@@ -3,9 +3,11 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+
 	bool Sweetspotused = true;
 	bool Isreloading = false;
 	bool Isdashing = false;
+	public float speed = 5.0f;
 	public float Reloadsweetspotlocation = 1.0f;
 	public float Reloadsweetspotleeway = 0.7f;
 	public float Dashingscale = 0.5f;
@@ -43,15 +45,15 @@ public class PlayerController : MonoBehaviour {
 
 	public void Movementcheck()
 	{
-		if (((Input.GetKeyDown (KeyCode.JoystickButton6) || Input.GetKeyDown (KeyCode.JoystickButton7)) || (Input.GetKeyDown(KeyCode.Q) 
-			|| Input.GetKeyDown(KeyCode.E)) )&& Canjump && !Isdashing && !((Input.GetKeyDown (KeyCode.JoystickButton6)
-				&& Input.GetKeyDown (KeyCode.JoystickButton7)) || (Input.GetKeyDown(KeyCode.Q) && (Input.GetKeyDown(KeyCode.E)) ))) {
-			Debug.Log ("dash!");
-			if (Input.GetKeyDown (KeyCode.JoystickButton6) || Input.GetKeyDown(KeyCode.Q)) {
+		if (((Input.GetKey (KeyCode.JoystickButton6) || Input.GetKey (KeyCode.JoystickButton7)) || (Input.GetKeyDown(KeyCode.Q) 
+			|| Input.GetKey(KeyCode.E)) )&& Canjump && !Isdashing && !((Input.GetKeyDown (KeyCode.JoystickButton6)
+				&& Input.GetKey (KeyCode.JoystickButton7)) || (Input.GetKey(KeyCode.Q) && (Input.GetKey(KeyCode.E)) ))) {
+			// Debug.Log ("dash!");
+			if (Input.GetKey (KeyCode.JoystickButton6) || Input.GetKey(KeyCode.Q)) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (-Dashingspeed, 0.0f);
 				Dashingcooldown = Dashingtime;
 				Isdashing = true;
-			} else if (Input.GetKeyDown (KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.E)) {
+			} else if (Input.GetKey (KeyCode.JoystickButton7) || Input.GetKey(KeyCode.E)) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (Dashingspeed, 0.0f);
 				Dashingcooldown = Dashingtime;
 				Isdashing = true;
@@ -66,12 +68,12 @@ public class PlayerController : MonoBehaviour {
 
 			if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D)) && !(Input.GetKeyDown (KeyCode.A) && (Input.GetKeyDown (KeyCode.D)))) {
 				if (Input.GetKeyDown (KeyCode.A)) {
-					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				} else {
-					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				}
 			} else {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
 			}
 		}
 
@@ -101,7 +103,23 @@ public class PlayerController : MonoBehaviour {
 					}
 					else
 					{
-						//TODO: HACK
+						Vector3 mouse_pos;
+						Vector3 obj_pos;
+						float angle;
+						mouse_pos = Input.mousePosition;
+						mouse_pos.z = 0f;
+						obj_pos = Camera.main.WorldToScreenPoint (transform.position);
+						mouse_pos.x = mouse_pos.x - obj_pos.x;
+						mouse_pos.y = mouse_pos.y - obj_pos.y;
+						angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+						Vector3 newFwd = Quaternion.Euler (new Vector3 (0,0,angle)) * Vector3.right;
+						Vector3 shootvector = newFwd;
+						shootvector.Normalize ();
+						Shootingcooldown = Firerate;
+						GameObject g;
+						g = (GameObject)Instantiate (projectile, transform.position + shootvector * 1.0F, new Quaternion (0, 0, 0, 0));
+						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
+						projectilescript.GiveDirection (shootvector);
 					}
 				}
 			}
