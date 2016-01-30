@@ -55,7 +55,7 @@ public class WalkingDemon : Enemy {
                 if (rand == 3)
                 {
                     state = AIstate.ATTACKING_2;
-                    stateTimer = 0F;
+                    stateTimer = 0.5F;
                     substate = 0;
                 }
 

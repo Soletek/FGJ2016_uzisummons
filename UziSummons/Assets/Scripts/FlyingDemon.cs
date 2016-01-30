@@ -56,7 +56,7 @@ public class FlyingDemon : Enemy
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Floor")
+        if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player")
         {
             if (!isAlive)
             {
@@ -135,14 +135,16 @@ public class FlyingDemon : Enemy
 
     void Shoot(GameObject target)
     {
-        Vector2 shootvector = - (transform.position - target.transform.position) ;
+        //Vector2 shootvector = - (transform.position - target.transform.position) ; // target player
+        Vector2 shootvector = new Vector2(Random.Range(-1F, 1F), -2F);
         shootvector.Normalize();
         shootingCooldown = Random.Range(1.9F, 2.1F);
-        GameObject g;
-        g = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.2F, new Quaternion(0, 0, 0, 0));
-        ProjectileScript projectileScript = g.GetComponent<ProjectileScript>();
+
+        GameObject bullet = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.2F, new Quaternion(0, 0, 0, 0));
+        ProjectileScript projectileScript = bullet.GetComponent<ProjectileScript>();
         projectileScript.Speed = 8F;
         projectileScript.damage = 10F;
+        projectileScript.gravity = -4F;
         projectileScript.GiveDirection(shootvector);
     }
 
