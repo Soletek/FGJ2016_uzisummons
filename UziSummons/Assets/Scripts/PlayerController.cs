@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour {
 	public int Clipsize = 60;
 	Vector3 Oldmouseloc;
 	Vector2 lastshot;
-
 	public GameObject projectile;
     public AudioHandler audioHandler;
+	public Texture2D Crosshair;
 
 	// Use this for initialization
 	void Start () {
@@ -237,9 +237,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnGUI() {
-		GUILayout.Box (Clipsize.ToString());
-    }
 
 	public void GiveDamage(float f)
 	{
@@ -350,5 +347,15 @@ public class PlayerController : MonoBehaviour {
             transform.position = new Vector3(-11.2F, transform.position.y, 0);
         }
     }
+
+	void OnGUI()
+	{
+		if (controllmethod == Controllmethod.Mouse) {
+			GUILayout.Box (Clipsize.ToString());
+			Rect position = new Rect ( Input.mousePosition.x - (Crosshair.width / 2), (Screen.height - Input.mousePosition.y) - (Crosshair.height / 2),Crosshair.width ,Crosshair.height );
+
+			GUI.DrawTexture (position, Crosshair);
+		}
+	}
 
 }
