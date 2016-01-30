@@ -6,8 +6,10 @@ public class WalkingDemon : Enemy {
     public enum AIstate { SUMMONED, WALKING, STOPPED, ATTACKING_1, ATTACKING_2 };
     public AIstate state;
     int patternDir = 1;
+    int substate = 0;
 
     public GameObject projectilePrefab;
+    public GameObject projectilePrefab2;
 
     public float shootingCooldown = 3.0F;
     public float stateTimer;
@@ -26,7 +28,7 @@ public class WalkingDemon : Enemy {
         }
     }
 
-    protected override void UpdateAi()
+    protected override void UpdateAI()
     {
         if (transform.position.y < 10F)
         {
@@ -38,18 +40,25 @@ public class WalkingDemon : Enemy {
         {
             if (stateTimer < 0)
             {
-                int rand = Random.Range(0, 4) + 1;
+                int rand = Random.Range(0, 3) + 1;
 
-                if (rand <= 2) {
+                if (rand == 1) {
                     state = AIstate.WALKING;
                     stateTimer = Random.Range(4F, 6F);
                 }
 
-                if (rand > 2)
+                if (rand == 2)
                 {
                     state = AIstate.ATTACKING_1;
                     stateTimer = Random.Range(4F, 6F);
                 }
+                if (rand == 3)
+                {
+                    state = AIstate.ATTACKING_2;
+                    stateTimer = 0F;
+                    substate = 0;
+                }
+
             }
         }
 
@@ -75,13 +84,24 @@ public class WalkingDemon : Enemy {
 
         if (state == AIstate.ATTACKING_2)
         {
-            if (stateTimer < 0)
+            if (substate <= 2 && stateTimer < 0)
+            {
+                Shoot2();
+                stateTimer = 0.1F;
+            }
+
+            if (substate == 3 && stateTimer < 0)
+            {
+                Shoot2();
+                stateTimer = 0.1F;
+            }
+
+
+            if (substate == 6 && stateTimer < 0)
             {
                 state = AIstate.STOPPED;
                 stateTimer = 1.5F;
             }
-
-            // TODO
         }
     }
 
@@ -95,7 +115,7 @@ public class WalkingDemon : Enemy {
         if (state == AIstate.WALKING)
         {
             // move
-            rbody.AddForce(new Vector3(95F * patternDir, 0, 0));
+            rbody.AddForce(new Vector3(135F * patternDir, 0, 0));
         }
 
         if (!isAlive)
@@ -122,15 +142,29 @@ public class WalkingDemon : Enemy {
 
     void Shoot()
     {
-        // TODO WORK
         Vector2 shootvector = new Vector2(Random.Range(-1F, 1F), .7F);
         shootvector.Normalize();
         shootingCooldown = .06F;
-        GameObject bullet = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.2F, new Quaternion(0, 0, 0, 0));
+        GameObject bullet = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.4F, new Quaternion(0, 0, 0, 0));
         ProjectileScript projectileScript = bullet.GetComponent<ProjectileScript>();
         projectileScript.Speed = 18F;
         projectileScript.damage = 30F;
         projectileScript.gravity = -20F;
         projectileScript.GiveDirection(shootvector);
+    }
+
+    void Shoot2()
+    {
+        for (int i = -1; i < 3; i += 2)
+        {
+            Vector2 shootvector = new Vector2(i, 0);
+            shootvector.Normalize();
+            GameObject bullet = (GameObject)Instantiate(projectilePrefab2, (Vector2)transform.position + shootvector * 0.4F, new Quaternion(0, 0, 0, 0));
+            ProjectileScript projectileScript = bullet.GetComponent<ProjectileScript>();
+            projectileScript.Speed = 18F;
+            projectileScript.damage = 30F;
+            projectileScript.gravity = -20F;
+            projectileScript.GiveDirection(shootvector);
+        }
     }
 }
