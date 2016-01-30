@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour {
         player = GameObject.Find("Player"); // TODO from creation
 	}
 
+    public virtual void SetData(LevelEnemyDataCollection data)
+    {}
+
     void FixedUpdate() {
 
         if (isAlive)

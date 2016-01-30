@@ -8,6 +8,8 @@ public class ProjectileScript : MonoBehaviour {
 	public float lifetime = 2.0f;
     public float damage = 20.0f;
 
+    public GameObject destruction;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -34,7 +36,7 @@ public class ProjectileScript : MonoBehaviour {
 
     void OnDestroy()
     {
-        
+        Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
     }
 
 

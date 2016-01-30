@@ -2,7 +2,7 @@
     "waveSpawnTimer":20.0,
     "waveLength":4.0, 
     "enemies": [
-        {"enemyPrefab":"testi", "amount":10, "pattern":1},
-        {"enemyPrefab":"testi", "amount":20, "pattern":2}
+        {"enemyPrefab":"FlyingDemon", "amount":10, "pattern":2},
+        {"enemyPrefab":"FlyingDemon", "amount":20, "pattern":1}
     ]
 }

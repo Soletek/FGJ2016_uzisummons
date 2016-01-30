@@ -17,6 +17,20 @@ public class FlyingDemon : Enemy
     public float shootingCooldown;
     public float moveCooldown;
 
+    public override void SetData(LevelEnemyDataCollection data)
+    {
+        if (data.pattern == 1)
+        {
+            pattern = AIpattern.RANDOM;
+            transform.position = new Vector3(Random.Range(-10, 10), 10, 0);
+        }
+        if (data.pattern == 2)
+        {
+            pattern = AIpattern.WAVE;
+            transform.position = new Vector3(-11, 6, 0);
+        }
+    }
+
     protected override void UpdateAi()
     {
         if (state == AIstate.SUMMONED)
