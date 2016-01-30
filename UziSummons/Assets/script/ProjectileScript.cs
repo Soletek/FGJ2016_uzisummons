@@ -20,11 +20,20 @@ public class ProjectileScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	
+        if (transform.position.y <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 	}
 
 	public void GiveDirection(Vector2 direction)
 	{
 		GetComponent<Rigidbody2D> ().velocity = direction * Speed;
 	}
+
+    void OnDestroy()
+    {
+        
+    }
 
 }

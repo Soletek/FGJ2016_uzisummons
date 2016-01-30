@@ -4,24 +4,53 @@ using System.Collections;
 public class FlyingDemon : Enemy
 {
     
-    public enum AIstate { AI_SUMMONED, AI_SHOOTING, AI_SWAP_POS, AI_FLYING };
+    public enum AIstate { SUMMONED, SHOOTING, SWAP_POS, FLYING };
     public AIstate state;
 
+    public enum AIpattern { RANDOM, WAVE };
+    public AIpattern pattern = AIpattern.WAVE;
+    int patternDir = 1;
+    float patternX;
+
     public GameObject projectilePrefab;
-    public GameObject player;
 
     public float shootingCooldown;
+    public float moveCooldown;
 
     protected override void UpdateAi()
     {
-        shootingCooldown -= Time.deltaTime;
-        if (shootingCooldown < 0) Shoot(player);
-
-        if (state == AIstate.AI_SUMMONED)
+        if (state == AIstate.SUMMONED)
         {
-            state = AIstate.AI_SWAP_POS;
-            targetPosition = new Vector2(Random.Range(-9, 9), Random.Range(5, 8)); 
+            state = AIstate.SWAP_POS;
+            if (pattern == AIpattern.RANDOM)
+            {
+                targetPosition = new Vector2(Random.Range(-9, 9), Random.Range(5, 8));
+            }
+
+            if (pattern == AIpattern.WAVE)
+            {
+                patternX = 10F * -patternDir;
+                targetPosition = new Vector2(patternX, Mathf.Sin(patternX) *2F + 6F);
+            }
         }
+
+        if (state == AIstate.SWAP_POS)
+        {
+            shootingCooldown -= Time.deltaTime;
+            if (shootingCooldown < 0) Shoot(player);
+
+            if (((Vector2)transform.position - targetPosition).magnitude <= 1.5F)
+            {
+                //state = AIstate.SHOOTING;
+
+                if (pattern == AIpattern.WAVE)
+                {
+                    patternX = patternX + 0.5F * patternDir;
+                    targetPosition = new Vector2(patternX, Mathf.Sin(patternX) * 2F + 6F);
+                }
+            }
+        }
+
     }
 
     void Shoot(GameObject target)

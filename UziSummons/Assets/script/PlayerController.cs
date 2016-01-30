@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.tag == "EnemyProjectile")
         {
-            hp = hp - other.GetComponent<ProjectileScript>().damage;
-            Destroy(other);
+            GiveDamage(other.GetComponent<ProjectileScript>().damage);
+            Destroy(other.gameObject);
         }
     }
 }
