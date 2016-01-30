@@ -66,7 +66,16 @@ public class FlyingDemon : Enemy
         }
     }
 
-    protected override void UpdateAi()
+    protected override void ResetAI()
+    {
+        if (pattern == AIpattern.WAVE)
+        {
+            patternX = 10F * -patternDir;
+            targetPosition = new Vector2(patternX, Mathf.Sin(patternX) * 2F + 6F);
+        }
+    }
+
+    protected override void UpdateAI()
     {
         if (transform.position.y < 10F)
         {

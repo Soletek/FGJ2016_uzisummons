@@ -32,6 +32,8 @@ ModelImporter:
     100048: Cube.003
     100050: Cube.004
     100052: Cube.005
+    100054: Body
+    100056: Body.001
     400000: Foot
     400002: Foot.001
     400004: Hands
@@ -59,6 +61,8 @@ ModelImporter:
     400048: Cube.003
     400050: Cube.004
     400052: Cube.005
+    400054: Body
+    400056: Body.001
     2300000: Foot
     2300002: Foot.001
     2300004: Hands
@@ -73,6 +77,8 @@ ModelImporter:
     2300022: Uzi.001
     2300024: Cube.004
     2300026: Cube.005
+    2300028: Body
+    2300030: Body.001
     3300000: Foot
     3300002: Foot.001
     3300004: Hands
@@ -87,6 +93,8 @@ ModelImporter:
     3300022: Uzi.001
     3300024: Cube.004
     3300026: Cube.005
+    3300028: Body
+    3300030: Body.001
     4300000: Leg upper.002
     4300002: Foot.001
     4300004: Leg Lower.001
@@ -103,6 +111,8 @@ ModelImporter:
     4300026: Cube.003
     4300028: Cube.005
     4300030: Cube.004
+    4300032: Body
+    4300034: Body.001
     7400000: Leg upper.002|Foot 1.001Action
     7400002: Leg upper.002|Foot 1.001Action.001
     7400004: Leg upper.002|Foot 1.001Action.002
@@ -650,15 +660,69 @@ ModelImporter:
     7401088: Armature.002|Jump Animation.002
     7401090: Armature.002|asd
     7401092: Armature.002|Move Animation
+    7401094: Head|Move Animation
+    7401096: Armature.002|asd.001 //// Armature.002
+    7401098: Armature.002|Jump Animation //// Armature.002
+    7401100: Armature.002|Jump Animation.002 //// Armature.002
+    7401102: Armature.002|asd //// Armature.002
+    7401104: Armature.002|Move Animation //// Armature.002
+    7401106: Head|Move Animation //// Body
+    7401108: Armature.002|asd.001 //// Bone
+    7401110: Armature.002|asd.001 //// Bone.001
+    7401112: Armature.002|asd.001 //// Bone.002
+    7401114: Armature.002|asd.001 //// Bone.003
+    7401116: Armature.002|asd.001 //// Bone.004
+    7401118: Armature.002|asd.001 //// Bone.005
+    7401120: Armature.002|Jump Animation //// Bone
+    7401122: Armature.002|Jump Animation //// Bone.001
+    7401124: Armature.002|Jump Animation //// Bone.002
+    7401126: Armature.002|Jump Animation //// Bone.003
+    7401128: Armature.002|Jump Animation //// Bone.004
+    7401130: Armature.002|Jump Animation //// Bone.005
+    7401132: Armature.002|Jump Animation.002 //// Bone
+    7401134: Armature.002|Jump Animation.002 //// Bone.001
+    7401136: Armature.002|Jump Animation.002 //// Bone.002
+    7401138: Armature.002|Jump Animation.002 //// Bone.003
+    7401140: Armature.002|Jump Animation.002 //// Bone.004
+    7401142: Armature.002|Jump Animation.002 //// Bone.005
+    7401144: Armature.002|asd //// Bone
+    7401146: Armature.002|asd //// Bone.001
+    7401148: Armature.002|asd //// Bone.002
+    7401150: Armature.002|asd //// Bone.003
+    7401152: Armature.002|asd //// Bone.004
+    7401154: Armature.002|asd //// Bone.005
+    7401156: Armature.002|Move Animation //// Bone
+    7401158: Armature.002|Move Animation //// Bone.001
+    7401160: Armature.002|Move Animation //// Bone.002
+    7401162: Armature.002|Move Animation //// Bone.003
+    7401164: Armature.002|Move Animation //// Bone.004
+    7401166: Armature.002|Move Animation //// Bone.005
+    7401168: Head|Move Animation //// Head
     9500000: //RootNode
+    11100000: //RootNode
+    11100002: Armature.002
+    11100004: Body
+    11100006: Body.001
+    11100008: Bone
+    11100010: Bone.001
+    11100012: Bone.002
+    11100014: Bone.002_end
+    11100016: Bone.003
+    11100018: Bone.004
+    11100020: Bone.005
+    11100022: Bone.005_end
+    11100024: Hands
+    11100026: Head
     13700000: Leg 2
     13700002: Cube.003
+    13700004: Body
+    13700006: Body.001
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
-    legacyGenerateAnimations: 4
+    legacyGenerateAnimations: 0
     bakeSimulation: 0
     resampleRotations: 1
     optimizeGameObjects: 0
@@ -667,7 +731,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -677,14 +741,14 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.4
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
+    optimizeMeshForGPU: 0
     keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
@@ -694,7 +758,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-      //  if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
+        if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         Oldmouseloc = Input.mousePosition;
 		controllmethod = Controllmethod.Controller;
 		ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
@@ -313,11 +313,11 @@ public class PlayerController : MonoBehaviour {
 	void Modelhandling()
 	{
 		if (Islookingright) {
-			Character.transform.rotation = new Quaternion (0, -180, 0, 0);
-			
-		} else {
-			Character.transform.rotation = new Quaternion (0, 0,0,0);
-		}
+			Character.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+
+        } else {
+			Character.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+        }
 
 		if (controllmethod == Controllmethod.Mouse) {
 			Vector3 mouse_pos;
@@ -325,14 +325,20 @@ public class PlayerController : MonoBehaviour {
 			float angle;
 			mouse_pos = Input.mousePosition;
 			mouse_pos.z = 10;
-			obj_pos = Camera.main.WorldToScreenPoint (transform.position);
+			obj_pos = Camera.main.WorldToScreenPoint (Righthand.transform.position);
 			mouse_pos.x = mouse_pos.x - obj_pos.x;
 			mouse_pos.y = mouse_pos.y - obj_pos.y;
 			angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-			Righthand.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, angle - 90));
-		} else {
-			Righthand.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, Vector2.Angle (Vector2.right, lastshot) - 90)); 
-		}
+            if (Islookingright)
+                Righthand.transform.localRotation = Quaternion.Euler(new Vector3(-angle - 90, 0, 0));
+            else
+                Righthand.transform.localRotation = Quaternion.Euler(new Vector3(angle + 90, 0, 0));
+        } else {
+            if (Islookingright)
+                Righthand.transform.localRotation = Quaternion.Euler(new Vector3(Vector2.Angle(Vector2.right, lastshot) - 90, 0, 0));
+            else
+                Righthand.transform.localRotation = Quaternion.Euler(new Vector3(Vector2.Angle(Vector2.right, lastshot) - 90, 0, 0)); // TODO
+        }
 			
 	}
 
