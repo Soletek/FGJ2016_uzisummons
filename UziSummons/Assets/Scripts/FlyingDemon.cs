@@ -99,7 +99,7 @@ public class FlyingDemon : Enemy
         ProjectileScript projectileScript = g.GetComponent<ProjectileScript>();
         projectileScript.Speed = 8F;
         projectileScript.damage = 10F;
-        projectileScript.GiveDirection(shootvector);  
+        projectileScript.GiveDirection(shootvector);
     }
 
 }
