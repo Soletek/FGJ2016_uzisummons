@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AudioHandler : MonoBehaviour {
 
+    public GameObject audioPrefab;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -13,9 +15,17 @@ public class AudioHandler : MonoBehaviour {
 	
 	}
 
-    public void PlaySound(string name)
+    public void PlaySound(string name, float pitch = -1F)
     {
-        GameObject sound = (GameObject)Instantiate(Resources.Load("Audio/" + name));
+        AudioSource sound = Instantiate(audioPrefab).GetComponent<AudioSource>();
+        
+        if (pitch < 0) {
+            sound.pitch = Random.Range(.7F, 1.2F);
+        } else {
+            sound.pitch = pitch;
+        }
+
+        Resources.Load("Audio/" + name);
         sound.transform.SetParent(this.transform);
     }
 }

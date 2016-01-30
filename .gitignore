@@ -1,6 +1,7 @@
 # BUZZ project files
 
 buzz/*.bmx
+buzz/*.backup
 
 #### UNITY
 
@@ -270,6 +271,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-*.unity
-UziSummons/Assets/prefab/Bullet.prefab
-UziSummons/Assets/prefab/Bullet.prefab
