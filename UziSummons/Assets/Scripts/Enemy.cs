@@ -38,18 +38,22 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
 	    if (hp <= 0)
         {
             isAlive = false;
-            Destroy(this.gameObject);
+            Destroy(this);
         }
 
         if (isAlive)
         {
             UpdateAi();
         }
-	}
+
+        if (Mathf.Abs(transform.position.x) >= 17F)
+        {
+            Destroy(this);
+        }
+    }
 
     protected virtual void UpdateAi()
     {}
