@@ -9,12 +9,16 @@ public class ProjectileScript : MonoBehaviour {
 	public float lifetime = 6.0f;
     public float damage = 20.0f;
 
+    [SerializeField]
+    AudioClip soundName;
+
     public List<GameObject> destruction = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
-	
-	}
+        AudioHandler audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
+        audioHandler.PlaySound(soundName);
+    }
 	
 	// Update is called once per frame
 	void Update () {

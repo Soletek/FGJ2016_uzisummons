@@ -11,6 +11,7 @@ public class ProgressBar : MonoBehaviour {
     Vector3 barScale;
     Vector3 barPosition;
 	MeshRenderer meshrenderer;
+    float progress;
 	// Use this for initialization
 	void Start () {
 		MeshRenderer meshrenderer = gameObject.GetComponent<MeshRenderer> ();
@@ -22,7 +23,7 @@ public class ProgressBar : MonoBehaviour {
 	public void CalledUpdate (float progress) {
 	    if (barScale.x < barRunTimeInSeconds)
         {
-            barScale.x = bar.transform.localScale.x + Time.deltaTime;
+            barScale.x = progress;
             barPosition.x = barScale.x / 2.0f - barRunTimeInSeconds / 2.0f;
             bar.transform.localScale = barScale;
             bar.transform.localPosition = barPosition;
@@ -31,6 +32,7 @@ public class ProgressBar : MonoBehaviour {
 
 	public void EnableBar ()
 	{
+        ResetProgressBar();
 		bar.transform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
 		hilight.transform.localPosition = new Vector3(-barRunTimeInSeconds / 2.0f + barRunTimeInSeconds * barHilightPosition, 0.0f, -.06f);
 		barScale = bar.transform.localScale;
@@ -43,8 +45,33 @@ public class ProgressBar : MonoBehaviour {
 		hilight.SetActive(false);
     }
 
+    public void EnableHilight()
+    {
+        hilight.SetActive(true);
+    }
+
 	public void DisableBar()
 	{
 		bar.SetActive (false);
+        background.SetActive(false);
+        hilight.SetActive(false);
 	}
+
+    public void SetTime(float time)
+    {
+        progress = time;
+    }
+
+    public void AddTime(float time)
+    {
+        progress += time;
+    }
+
+    public void ResetProgressBar()
+    {
+        progress = 0.0f;
+        bar.SetActive(true);
+        background.SetActive(true);
+        hilight.SetActive(true);
+    }
 }
