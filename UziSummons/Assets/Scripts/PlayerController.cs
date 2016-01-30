@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour {
 	public int Clipsize = 60;
 	Vector3 Oldmouseloc;
 	Vector2 lastshot;
-
 	public GameObject projectile;
     public AudioHandler audioHandler;
+	public Texture2D Crosshair;
 
 	// Use this for initialization
 	void Start () {
@@ -82,15 +82,17 @@ public class PlayerController : MonoBehaviour {
 		if (!Isdashing) {
 			if ((Input.GetKeyDown (KeyCode.JoystickButton5) || Input.GetKeyDown(KeyCode.Space) ) && Canjump) {
 				Canjump = false;
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 7.0f);
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 10.0f);
 			}
 
 			if ((Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.D)) && !(Input.GetKey (KeyCode.A) && (Input.GetKey (KeyCode.D)))) {
 				if (Input.GetKey (KeyCode.A)) {
 					Islookingright = false;
+					//Play running animation
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				} else {
 					Islookingright = true;
+					//Play running animation
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				}
 			} else {
@@ -98,8 +100,13 @@ public class PlayerController : MonoBehaviour {
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				if (Input.GetAxis ("Horizontal") > 0.0f) {
 					Islookingright = true;
+					//Play running animation
 				} else if (Input.GetAxis ("Horizontal") < 0.0f) {
 					Islookingright = false;
+					//Play running animation
+				} else {
+
+					//Stop runnin animation
 				}
 				}
 		}
@@ -237,9 +244,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnGUI() {
-		GUILayout.Box (Clipsize.ToString());
-    }
 
 	public void GiveDamage(float f)
 	{
@@ -349,12 +353,22 @@ public class PlayerController : MonoBehaviour {
     {
         if (transform.position.x < -11.2)
         {
-            transform.position = new Vector3(11.2F, transform.position.y, 0);
+            transform.position = new Vector3(-11.2F, transform.position.y, 0);
         }
         if (transform.position.x > 11.2)
         {
-            transform.position = new Vector3(-11.2F, transform.position.y, 0);
+            transform.position = new Vector3(11.2F, transform.position.y, 0);
         }
     }
+
+	void OnGUI()
+	{
+		if (controllmethod == Controllmethod.Mouse) {
+			Rect position = new Rect ( Input.mousePosition.x - (Crosshair.width / 2), (Screen.height - Input.mousePosition.y) - (Crosshair.height / 2),Crosshair.width ,Crosshair.height );
+			GUI.DrawTexture (position, Crosshair);
+		}
+		GUILayout.Box (Clipsize.ToString());
+		GUILayout.Box (hp.ToString());
+	}
 
 }
