@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class SpawnBehaviour : MonoBehaviour {
     [SerializeField]
@@ -12,6 +13,8 @@ public class SpawnBehaviour : MonoBehaviour {
     int currentWave = 0;
     bool waveSpawnedCompletely = false;
     public GameObject player;
+    public List<GameObject> enemiesInScene;
+
 	// Use this for initialization
 	void Start () {
         LoadLevelData("level1.txt");
@@ -37,6 +40,7 @@ public class SpawnBehaviour : MonoBehaviour {
                             GameObject spawnedEnemy;
                             spawnedEnemy = (GameObject)Instantiate(Resources.Load("Prefabs/" + currentLevel.enemies[currentWave].enemyPrefab), Vector3.zero, Quaternion.identity);  // prefabs need to go to Resources/Prefabs or otherwise everything is terrible
                             spawnedEnemy.GetComponent<Enemy>().SetData(currentLevel.enemies[currentWave]);
+                            enemiesInScene.Add(spawnedEnemy);
                         }
 
                         currentLevel.enemies[currentWave].amount -= 1;
@@ -54,7 +58,13 @@ public class SpawnBehaviour : MonoBehaviour {
         }
 	}
 
+    // will not spawn a new wave unless all enemies are dead
     void SpawnWave() {
+        enemiesInScene.Remove(null);
+        if(enemiesInScene.Count > 0)
+        {
+            return;
+        }
         if (currentLevel.enemies.Length <= currentWave + 1)
         {
             // get next level
