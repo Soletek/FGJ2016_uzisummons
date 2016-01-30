@@ -16,7 +16,7 @@ public class ProjectileScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        AudioHandler audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>(); // TODO from creation
+        AudioHandler audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         audioHandler.PlaySound(soundName);
     }
 	
