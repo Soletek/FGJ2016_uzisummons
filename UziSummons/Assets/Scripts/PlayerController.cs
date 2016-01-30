@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	bool Sweetspotused = true;
 	bool Isreloading = false;
 	bool Isdashing = false;
+	bool Islookingright = true;
 	public float speed = 5.0f;
 	public float Reloadsweetspotlocation = 1.0f;
 	public float Reloadsweetspotleeway = 0.7f;
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour {
 				Isreloading = true;
 				Reloadcooldown = Reloadrate;
 				Sweetspotused = false;
-			} else if (Input.GetMouseButton(0) || (Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0) && Shootingcooldown <= 0 && !Isdashing) {
+			} else if ((Input.GetMouseButton(0) || (Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0)) && Shootingcooldown <= 0 && !Isdashing) {
 				if (Clipsize > 0) {
 					Clipsize--;
 					if (!Input.GetMouseButton (0)) {
@@ -255,5 +256,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		Oldmouseloc = Input.mousePosition;
 		return false;
+	}
+
+	void Modelhandling()
+	{
+		
 	}
 }
