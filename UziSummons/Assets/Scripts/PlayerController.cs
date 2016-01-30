@@ -368,7 +368,7 @@ public class PlayerController : MonoBehaviour {
 			GUI.DrawTexture (position, Crosshair);
 		}
 		GUILayout.Box (Clipsize.ToString());
-		GUILayout.Box (hp.ToString());
+		GUILayout.Box ( hp.ToString());
 	}
 
 }
