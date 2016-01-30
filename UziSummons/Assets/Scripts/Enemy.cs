@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
     public Vector2 targetPosition;
     public GameObject player;
     public float speedMod = 4.0F;
+    public float kbMod = 1.0F;
 
     public AudioHandler audioHandler;
     public GameObject destruction;
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour {
         if (other.tag == "PlayerProjectile")
         {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
-            GetComponent<Rigidbody2D>().AddForce(other.GetComponent<Rigidbody2D>().velocity * 3F);
+            GetComponent<Rigidbody2D>().AddForce(other.GetComponent<Rigidbody2D>().velocity * kbMod);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
 
             audioHandler.PlaySound("BodyHit1");

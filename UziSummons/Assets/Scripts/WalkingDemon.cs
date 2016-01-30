@@ -6,6 +6,7 @@ public class WalkingDemon : Enemy {
     public enum AIstate { SUMMONED, WALKING, STOPPED, ATTACKING_1, ATTACKING_2 };
     public AIstate state;
     int patternDir = 1;
+    int rotation = -1;
     public int substate = 0;
 
     public GameObject projectilePrefab;
@@ -40,23 +41,25 @@ public class WalkingDemon : Enemy {
         {
             if (stateTimer < 0)
             {
-                int rand = Random.Range(0, 3) + 1;
+                rotation = (rotation + 1) % 3;
 
-                if (rand == 1) {
-                    state = AIstate.WALKING;
-                    stateTimer = Random.Range(1.5F, 2.5F);
-                }
-
-                if (rand == 2)
-                {
-                    state = AIstate.ATTACKING_1;
-                    stateTimer = Random.Range(4F, 5F);
-                }
-                if (rand == 3)
+                if (rotation == 0)
                 {
                     state = AIstate.ATTACKING_2;
                     stateTimer = 0.5F;
                     substate = 0;
+                }
+
+                if (rotation == 1)
+                {
+                    state = AIstate.ATTACKING_1;
+                    stateTimer = Random.Range(4F, 5F);
+                }
+
+                if (rotation == 2)
+                {
+                    state = AIstate.WALKING;
+                    stateTimer = Random.Range(1.5F, 2.5F);
                 }
 
             }
