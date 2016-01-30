@@ -14,10 +14,10 @@ public class SpawnBehaviour : MonoBehaviour {
     bool waveSpawnedCompletely = false;
     public GameObject player;
     public List<GameObject> enemiesInScene;
-
+    int levelNumber = 1;
 	// Use this for initialization
 	void Start () {
-        LoadLevelData("level1.txt");
+        LoadLevelData("level2.txt");
 	}
 	
 	// Update is called once per frame
@@ -56,22 +56,33 @@ public class SpawnBehaviour : MonoBehaviour {
                 currentWaveEnemySpawnTimer += Time.deltaTime;
             }
         }
-	}
+    }
 
     // will not spawn a new wave unless all enemies are dead
     void SpawnWave() {
         enemiesInScene.Remove(null);
-        if(enemiesInScene.Count > 0)
+        if(enemiesInScene.Count > 0 && currentLevel.enemies[currentWave].spawnNextImmediatly == "no")
         {
             return;
         }
         if (currentLevel.enemies.Length <= currentWave + 1)
         {
+            levelNumber += 1;
+            try {
+                string path = "LevelData/level" + levelNumber.ToString() + ".txt";
+                LoadLevelData(path);
+            }
+            catch
+            {
+                // lol
+            }
+            
             // get next level
         }
         else {
             currentWave += 1;
             currentNewWaveTimer = 0.0f;
+            waveSpawnedCompletely = false;
         }
     }
 

@@ -6,4 +6,5 @@ public class LevelEnemyDataCollection {
     public string enemyPrefab;
     public float amount;
     public int pattern;
+    public string spawnNextImmediatly;
 }
