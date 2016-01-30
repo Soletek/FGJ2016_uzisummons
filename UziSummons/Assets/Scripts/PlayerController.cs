@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	enum Controllmethod {Controller, Mouse};
 	Controllmethod controllmethod = Controllmethod.Controller;
+	public GameObject Reloadbar;
 	bool Sweetspotused = true;
 	bool Isreloading = false;
 	bool Isdashing = false;
@@ -59,6 +60,9 @@ public class PlayerController : MonoBehaviour {
 			|| Input.GetKey(KeyCode.E)) )&& Canjump && !Isdashing && !((Input.GetKeyDown (KeyCode.JoystickButton6)
 				&& Input.GetKey (KeyCode.JoystickButton7)) || (Input.GetKey(KeyCode.Q) && (Input.GetKey(KeyCode.E)) ))) {
 			// Debug.Log ("dash!");
+
+			//DASH SOUND EFFECT
+
 			if (Input.GetKey (KeyCode.JoystickButton6) || Input.GetKey(KeyCode.Q)) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (-Dashingspeed, 0.0f);
 				Dashingcooldown = Dashingtime;
@@ -104,12 +108,17 @@ public class PlayerController : MonoBehaviour {
 		if (!Isreloading) {
 			if (Input.GetKeyDown (KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) {
 				Isreloading = true;
+
+				//Reload sound 1
+
 				Reloadcooldown = Reloadrate;
 				Sweetspotused = false;
 			} else if ((Input.GetMouseButton(0) || (Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0)) && Shootingcooldown <= 0 && !Isdashing) {
 				if (Clipsize > 0) {
 					Clipsize--;
 					if (!Input.GetMouseButton (0)) {
+
+						//Bullet shooting sound
 						Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
 						shootvector = shootvector + new Vector2 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
 						shootvector.Normalize ();
@@ -119,9 +128,9 @@ public class PlayerController : MonoBehaviour {
 						g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
 						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
 						projectilescript.GiveDirection (shootvector);
-					}
-					else
-					{
+					} else {
+
+						//Bullet shooting sound
 						Vector3 mouse_pos;
 						Vector3 obj_pos;
 						float angle;
@@ -131,7 +140,7 @@ public class PlayerController : MonoBehaviour {
 						mouse_pos.x = mouse_pos.x - obj_pos.x;
 						mouse_pos.y = mouse_pos.y - obj_pos.y;
 						angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-						Vector3 newFwd = Quaternion.Euler (new Vector3 (0,0,angle)) * Vector3.right;
+						Vector3 newFwd = Quaternion.Euler (new Vector3 (0, 0, angle)) * Vector3.right;
 						Vector3 shootvector = newFwd;
 						shootvector = shootvector + new Vector3 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
 						shootvector.Normalize ();
@@ -142,18 +151,29 @@ public class PlayerController : MonoBehaviour {
 						projectilescript.GiveDirection (shootvector);
 					}
 				}
+					else{
+
+						//click sound from gun not having bullets
+					}
+
 			}
 
 		} else if ((Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) && Sweetspotused == false)
 		{
 			if ((Reloadsweetspotlocation - Reloadsweetspotleeway) <= Reloadcooldown && Reloadcooldown <= (Reloadsweetspotlocation + Reloadsweetspotleeway)) {
+
+				//Succesful spee reload YAY reloadgood effect
+
 				Isreloading = false;
 				Clipsize = 60;
 				Reloadcooldown = 0;
 				Sweetspotused = true;
+
 			}
 			else 
 			{
+				//Shitty reload, ugly sound
+
 				Sweetspotused = true;
 				Reloadcooldown = Reloadcooldown + 1.0f;
 				if (Reloadcooldown > Reloadrate)
@@ -175,6 +195,9 @@ public class PlayerController : MonoBehaviour {
 		if (Reloadcooldown > 0) {
 			Reloadcooldown = Reloadcooldown - timer;
 			if (Reloadcooldown <= 0) {
+
+				//Reload complete, play a sound
+
 				Isreloading = false;
 				Clipsize = 60;
 			}
@@ -218,6 +241,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.tag == "EnemyProjectile")
         {
+			//YOu take hit, ouch sound
+
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
         }
@@ -294,4 +319,5 @@ public class PlayerController : MonoBehaviour {
 		}
 			
 	}
+
 }
