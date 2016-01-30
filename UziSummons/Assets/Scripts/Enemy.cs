@@ -62,9 +62,11 @@ public class Enemy : MonoBehaviour {
 	{
 		if (transform.position.x < -11.2) {
 			transform.position = new Vector3 (11.2F, transform.position.y, 0);
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 		}
 		if (transform.position.x > 11.2) {
 			transform.position = new Vector3 (-11.2F, transform.position.y, 0);
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 		}
 	}
 }
