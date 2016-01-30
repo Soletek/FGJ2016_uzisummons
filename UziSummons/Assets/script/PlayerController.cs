@@ -163,4 +163,12 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "EnemyProjectile")
+        {
+            GiveDamage(other.GetComponent<ProjectileScript>().damage);
+            Destroy(other.gameObject);
+        }
+    }
 }

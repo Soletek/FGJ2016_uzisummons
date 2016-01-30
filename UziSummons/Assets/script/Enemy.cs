@@ -6,12 +6,13 @@ public class Enemy : MonoBehaviour {
     public float hp;
     bool isAlive = true;
     public Vector2 targetPosition;
-    
+    public GameObject player;
+    public float speedMod = 4.0F;
 
     // Use this for initialization
     void Start () {
         if (hp == 0) hp = 50F;
-
+        player = GameObject.Find("Player"); // TODO from creation
 	}
 
     void FixedUpdate() {
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour {
             if (true) { // TODO (mode == flying) {
                 Vector2 forcePosition = (targetPosition - (Vector2)transform.position);
                 Vector2 forceDirection = forcePosition.normalized;
-                float speed = forcePosition.magnitude;
+                float speed = forcePosition.magnitude * speedMod;
                 Vector2 force = forceDirection.normalized * speed;
 
                 rbody.AddForce(force);
@@ -49,14 +50,16 @@ public class Enemy : MonoBehaviour {
     protected virtual void UpdateAi()
     {}
 
-    
+    public void GiveDamage(float f)
+    {
+        hp -= f;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("COLL " + other.ToString());
         if (other.tag == "PlayerProjectile") {
-            hp = hp - other.GetComponent<ProjectileScript>().damage;
-            Destroy(other);
+            GiveDamage(other.GetComponent<ProjectileScript>().damage);
+            Destroy(other.gameObject);
         }
     }
 }
