@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	bool Isdashing = false;
 	bool Islookingright = true;
 	public GameObject Character;
+	public GameObject progressbar;
 	public float ShootSpawndistance = 1.0f;
 	public float speed = 5.0f;
 	public float Reloadsweetspotlocation = 1.0f;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
+      //  if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         Oldmouseloc = Input.mousePosition;
 		controllmethod = Controllmethod.Controller;
 	}
@@ -110,7 +111,10 @@ public class PlayerController : MonoBehaviour {
 		if (!Isreloading) {
 			if (Input.GetKeyDown (KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) {
 				Isreloading = true;
-
+				ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
+				progresbar.EnableBar ();
+				progresbar.ResetProgressBar ();
+				progresbar.EnableHilight ();
                 audioHandler.PlaySound("step1");
 
                 Reloadcooldown = Reloadrate;
@@ -163,7 +167,8 @@ public class PlayerController : MonoBehaviour {
 
                 //Succesful spee reload YAY reloadgood effect
                 audioHandler.PlaySound("step2.good");
-
+				ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
+				progresbar.DisableBar ();
                 Isreloading = false;
 				Clipsize = 60;
 				Reloadcooldown = 0;
@@ -174,7 +179,8 @@ public class PlayerController : MonoBehaviour {
 			{
                 //Shitty reload, ugly sound
                 audioHandler.PlaySound("step2.bad");
-
+				ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
+				progresbar.DisableHilight ();
                 Sweetspotused = true;
 				Reloadcooldown = Reloadcooldown + 1.0f;
 				if (Reloadcooldown > Reloadrate)
@@ -194,12 +200,17 @@ public class PlayerController : MonoBehaviour {
 			
 		}
 		if (Reloadcooldown > 0) {
+
+			ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
+
+			
+			progresbar.CalledUpdate (Time.deltaTime);
 			Reloadcooldown = Reloadcooldown - timer;
 			if (Reloadcooldown <= 0) {
 
                 //Reload complete, play a sound
                 audioHandler.PlaySound("step3");
-
+				progresbar.DisableBar ();
                 Isreloading = false;
 				Clipsize = 60;
 			}
