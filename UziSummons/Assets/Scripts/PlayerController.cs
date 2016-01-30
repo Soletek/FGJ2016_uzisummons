@@ -106,14 +106,14 @@ public class PlayerController : MonoBehaviour {
 	{
 
 		if (!Isreloading) {
-			if (Input.GetKeyDown (KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) {
+			if (Input.GetKeyDown (KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) {
 				Isreloading = true;
 
 				//Reload sound 1
 
 				Reloadcooldown = Reloadrate;
 				Sweetspotused = false;
-			} else if ((Input.GetMouseButton(0) || (Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0)) && Shootingcooldown <= 0 && !Isdashing) {
+			} else if ((Input.GetMouseButton(0) || Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0) && Shootingcooldown <= 0 && !Isdashing) {
 				if (Clipsize > 0) {
 					Clipsize--;
 					if (!Input.GetMouseButton (0)) {
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
 
 			}
 
-		} else if ((Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) && Sweetspotused == false)
+		} else if ((Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) && Sweetspotused == false)
 		{
 			if ((Reloadsweetspotlocation - Reloadsweetspotleeway) <= Reloadcooldown && Reloadcooldown <= (Reloadsweetspotlocation + Reloadsweetspotleeway)) {
 
