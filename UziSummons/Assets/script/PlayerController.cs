@@ -43,13 +43,15 @@ public class PlayerController : MonoBehaviour {
 
 	public void Movementcheck()
 	{
-		if ((Input.GetKeyDown (KeyCode.JoystickButton6) || Input.GetKeyDown (KeyCode.JoystickButton7)) && Canjump && !Isdashing && !(Input.GetKeyDown (KeyCode.JoystickButton6) && Input.GetKeyDown (KeyCode.JoystickButton7))) {
+		if (((Input.GetKeyDown (KeyCode.JoystickButton6) || Input.GetKeyDown (KeyCode.JoystickButton7)) || (Input.GetKeyDown(KeyCode.Q) 
+			|| Input.GetKeyDown(KeyCode.E)) )&& Canjump && !Isdashing && !((Input.GetKeyDown (KeyCode.JoystickButton6)
+				&& Input.GetKeyDown (KeyCode.JoystickButton7)) || (Input.GetKeyDown(KeyCode.Q) && (Input.GetKeyDown(KeyCode.E)) ))) {
 			Debug.Log ("dash!");
-			if (Input.GetKeyDown (KeyCode.JoystickButton6)) {
+			if (Input.GetKeyDown (KeyCode.JoystickButton6) || Input.GetKeyDown(KeyCode.Q)) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (-Dashingspeed, 0.0f);
 				Dashingcooldown = Dashingtime;
 				Isdashing = true;
-			} else if (Input.GetKeyDown (KeyCode.JoystickButton7)) {
+			} else if (Input.GetKeyDown (KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.E)) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (Dashingspeed, 0.0f);
 				Dashingcooldown = Dashingtime;
 				Isdashing = true;
@@ -61,9 +63,16 @@ public class PlayerController : MonoBehaviour {
 				Canjump = false;
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 7.0f);
 			}
-			
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
 
+			if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D)) && !(Input.GetKeyDown (KeyCode.A) && (Input.GetKeyDown (KeyCode.D)))) {
+				if (Input.GetKeyDown (KeyCode.A)) {
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
+				} else {
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
+				}
+			} else {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * 5.0f, GetComponent<Rigidbody2D> ().velocity.y);
+			}
 		}
 
 
@@ -73,25 +82,31 @@ public class PlayerController : MonoBehaviour {
 	{
 
 		if (!Isreloading) {
-			if (Input.GetKeyDown (KeyCode.JoystickButton4)) {
+			if (Input.GetKeyDown (KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) {
 				Isreloading = true;
 				Reloadcooldown = Reloadrate;
 				Sweetspotused = false;
-			} else if ((Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0) && Shootingcooldown <= 0 && !Isdashing) {
+			} else if (Input.GetMouseButton(0) || (Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0) && Shootingcooldown <= 0 && !Isdashing) {
 				if (Clipsize > 0) {
 					Clipsize--;
-					Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
-					shootvector = shootvector + new Vector2 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
-					shootvector.Normalize ();
-					Shootingcooldown = Firerate;
-					GameObject g;
-					g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * 0.5F, new Quaternion (0, 0, 0, 0));
-					ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
-					projectilescript.GiveDirection (shootvector);
+					if (!Input.GetMouseButton (0)) {
+						Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
+						shootvector = shootvector + new Vector2 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
+						shootvector.Normalize ();
+						Shootingcooldown = Firerate;
+						GameObject g;
+						g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * 0.5F, new Quaternion (0, 0, 0, 0));
+						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
+						projectilescript.GiveDirection (shootvector);
+					}
+					else
+					{
+						//TODO: HACK
+					}
 				}
 			}
 
-		} else if (Input.GetKeyDown(KeyCode.JoystickButton4) && Sweetspotused == false)
+		} else if ((Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) && Sweetspotused == false)
 		{
 			if ((Reloadsweetspotlocation - Reloadsweetspotleeway) <= Reloadcooldown && Reloadcooldown <= (Reloadsweetspotlocation + Reloadsweetspotleeway)) {
 				Isreloading = false;
