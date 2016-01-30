@@ -19,12 +19,12 @@ public class WalkingDemon : Enemy {
         if (data.pattern == 1)
         {
             patternDir = 1;
-            transform.position = new Vector3(-9, 11, 0);
+            transform.position = new Vector3(-7, 11, 0);
         }
         if (data.pattern == 2 || data.pattern == 3)
         {
             patternDir = -1;
-            transform.position = new Vector3(9, 11, 0);
+            transform.position = new Vector3(7, 11, 0);
         }
     }
 
@@ -145,7 +145,7 @@ public class WalkingDemon : Enemy {
                 audioHandler.PlaySound("ImpactMetal_big");
                 GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(1.0F);
                 state = AIstate.STOPPED;
-                stateTimer = 1.2F;
+                stateTimer = 2F;
             } else
             {
                 GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(.4F);
