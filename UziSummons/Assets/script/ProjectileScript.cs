@@ -16,7 +16,7 @@ public class ProjectileScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		lifetime = lifetime - Time.deltaTime;
-		if (lifetime < 0) {
+		if (lifetime < 0 ) {
 			Destroy (gameObject);
 		}
 	
@@ -26,5 +26,7 @@ public class ProjectileScript : MonoBehaviour {
 	{
 		GetComponent<Rigidbody2D> ().velocity = direction * Speed;
 	}
+
+
 
 }

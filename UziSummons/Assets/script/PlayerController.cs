@@ -3,8 +3,11 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	bool Sweetspotused = true;
 	bool Isreloading = false;
 	bool Isdashing = false;
+	public float Reloadsweetspotlocation = 1.0f;
+	public float Reloadsweetspotleeway = 0.7f;
 	public float Dashingscale = 0.5f;
 	public float Dashingtime = 1.0f;
 	public float Dashingspeed = 10.0f;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 			Cooldowns ();
 			Movementcheck ();
 			Shooting ();
+		//	Debug.Log (Reloadcooldown);
 		}
 	
 	}
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.JoystickButton4)) {
 				Isreloading = true;
 				Reloadcooldown = Reloadrate;
+				Sweetspotused = false;
 			} else if ((Input.GetAxis ("RightstickHori") != 0 || Input.GetAxis ("RightstickVert") != 0) && Shootingcooldown <= 0 && !Isdashing) {
 				if (Clipsize > 0) {
 					Clipsize--;
@@ -86,6 +91,23 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
+		} else if (Input.GetKeyDown(KeyCode.JoystickButton4) && Sweetspotused == false)
+		{
+			if ((Reloadsweetspotlocation - Reloadsweetspotleeway) <= Reloadcooldown && Reloadcooldown <= (Reloadsweetspotlocation + Reloadsweetspotleeway)) {
+				Isreloading = false;
+				Clipsize = 60;
+				Reloadcooldown = 0;
+				Sweetspotused = true;
+			}
+			else 
+			{
+				Sweetspotused = true;
+				Reloadcooldown = Reloadcooldown + 1.0f;
+				if (Reloadcooldown > Reloadrate)
+				{
+					Reloadcooldown = Reloadrate;
+				}
+			}
 		}
 
 	}
