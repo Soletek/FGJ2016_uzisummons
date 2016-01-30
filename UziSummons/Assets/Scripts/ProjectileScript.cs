@@ -10,6 +10,8 @@ public class ProjectileScript : MonoBehaviour {
     public float damage = 20.0f;
     public float gravity = 0.0F;
 
+    AudioHandler audioHandler;
+
     [SerializeField]
     AudioClip soundName;
 
@@ -17,7 +19,7 @@ public class ProjectileScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        AudioHandler audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
+        audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         audioHandler.PlaySound(soundName);
     }
 
@@ -35,6 +37,7 @@ public class ProjectileScript : MonoBehaviour {
 	
         if (transform.position.y <= 0)
         {
+            audioHandler.PlaySound("");
             ObjectCollision();
         }
 	}

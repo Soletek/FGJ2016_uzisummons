@@ -15,6 +15,15 @@ public class AudioHandler : MonoBehaviour {
 	
 	}
 
+    // ids
+    //  0 = silence;
+    //  1 = main;
+    //  2 = boss;
+    public void SwapMusicTrack(int id)
+    {
+        // TODO
+    }
+
     public void PlaySound(string clipName, float pitch = -1F)
     {
         PlaySound((AudioClip)Resources.Load("Audio/" + clipName), pitch);
