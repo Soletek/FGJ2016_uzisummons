@@ -60,9 +60,10 @@ public class WalkingDemon : Enemy {
 
         if (state == AIstate.ATTACKING_1)
         {
-            if (stateTimer < 0) {
+            if (stateTimer < 0)
+            {
                 state = AIstate.STOPPED;
-
+            }
             // TODO
         }
 
