@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour {
 	    if (hp <= 0)
         {
             isAlive = false;
+            Destroy(this.gameObject);
         }
 
         if (isAlive)
