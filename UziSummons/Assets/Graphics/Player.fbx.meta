@@ -619,6 +619,7 @@ ModelImporter:
     7401076: Hands|Foot.001Action.000
     7401078: Head|ArmatureAction.001
     7401080: Head|Foot.001Action.000
+    7401082: Armature|Jump Animation
     9500000: //RootNode
     13700000: Leg 2
   materials:

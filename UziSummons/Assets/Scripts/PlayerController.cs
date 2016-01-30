@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-
+	enum Controllmethod {Controller, Mouse};
+	Controllmethod controllmethod = Controllmethod.Controller;
 	bool Sweetspotused = true;
 	bool Isreloading = false;
 	bool Isdashing = false;
@@ -17,23 +18,28 @@ public class PlayerController : MonoBehaviour {
 	public bool Canjump = true;
 	public float Firerate = 0.25f;
 	public float Reloadrate = 2.0f;
+	public GameObject Lefthand;
+	public GameObject Righthand;
 	float Dashingcooldown = 0.0f;
 	float Reloadcooldown = 0.0f;
 	float Shootingcooldown = 0.0f;
 	float timer = 0.0f;
 	float Spread = 0.1f;
 	public int Clipsize = 60;
+	Vector3 Oldmouseloc;
 
 	public GameObject projectile;
 
 
 	// Use this for initialization
 	void Start () {
-	
+		Oldmouseloc = Input.mousePosition;
+		controllmethod = Controllmethod.Controller;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		ControllCheck ();
 		if (AliveCheck()) {
 			Cooldowns ();
 			Movementcheck ();
@@ -61,20 +67,22 @@ public class PlayerController : MonoBehaviour {
 		}
 	
 		if (!Isdashing) {
-			if (Input.GetKeyDown (KeyCode.JoystickButton5) && Canjump) {
+			if ((Input.GetKeyDown (KeyCode.JoystickButton5) || Input.GetKeyDown(KeyCode.Space) ) && Canjump) {
 				Canjump = false;
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 7.0f);
 			}
 
-			if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D)) && !(Input.GetKeyDown (KeyCode.A) && (Input.GetKeyDown (KeyCode.D)))) {
-				if (Input.GetKeyDown (KeyCode.A)) {
-					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
-				} else {
+			if ((Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.D)) && !(Input.GetKey (KeyCode.A) && (Input.GetKey (KeyCode.D)))) {
+				if (Input.GetKey (KeyCode.A)) {
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
+				} else {
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				}
 			} else {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
-			}
+				
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
+				
+				}
 		}
 
 
@@ -202,4 +210,50 @@ public class PlayerController : MonoBehaviour {
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
         }
     }
+
+	void ControllCheck()
+	{
+		switch (controllmethod) {
+		case Controllmethod.Controller:
+			if (MouseCheck ()) {
+				controllmethod = Controllmethod.Mouse;
+				Debug.Log ("siirrtyaan hiireen");
+			}
+			break;
+		case Controllmethod.Mouse:
+			if (ControllerCheck ()) {
+				Debug.Log ("siirrytaan ohjaimeen");
+				controllmethod = Controllmethod.Controller;
+			}
+			break;
+
+		}
+		
+	}
+
+	bool MouseCheck()
+	{
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
+			{return true;
+			}
+			else if (Input.mousePosition != Oldmouseloc)
+			{
+			return true;
+			}
+		Oldmouseloc = Input.mousePosition;
+		return false;
+			}
+
+	bool ControllerCheck()
+	{
+		if (Input.GetKey (KeyCode.Joystick1Button4) || Input.GetKey (KeyCode.Joystick1Button5) || Input.GetKey (KeyCode.Joystick1Button6) || Input.GetKey (KeyCode.Joystick1Button7)) {
+			Oldmouseloc = Input.mousePosition;
+			return true;
+		} else if ((Input.GetAxis ("Horizontal") != 0.0f) || (Input.GetAxis ("Vertical") != 0.0f) || (Input.GetAxis ("RightstickHori") != 0.0f) || (Input.GetAxis ("RightstickVert") != 0.0f)) {
+			Oldmouseloc = Input.mousePosition;
+			return true;
+		}
+		Oldmouseloc = Input.mousePosition;
+		return false;
+	}
 }
