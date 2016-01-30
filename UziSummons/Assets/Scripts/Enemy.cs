@@ -4,11 +4,13 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
     public float hp;
-    bool isAlive = true;
+    protected bool isAlive = true;
     public Vector2 targetPosition;
     public GameObject player;
     public float speedMod = 4.0F;
     public AudioHandler audioHandler;
+
+    public GameObject destruction;
 
 
     // Use this for initialization
@@ -21,22 +23,7 @@ public class Enemy : MonoBehaviour {
     public virtual void SetData(LevelEnemyDataCollection data)
     {}
 
-    void FixedUpdate() {
-
-        if (isAlive)
-        {
-            Rigidbody2D rbody = GetComponent<Rigidbody2D>();
-
-            if (true) { // TODO (mode == flying) {
-                Vector2 forcePosition = (targetPosition - (Vector2)transform.position);
-                Vector2 forceDirection = forcePosition.normalized;
-                float speed = forcePosition.magnitude * speedMod;
-                Vector2 force = forceDirection.normalized * speed;
-
-                rbody.AddForce(force);
-            }
-        }
-    }
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -44,26 +31,38 @@ public class Enemy : MonoBehaviour {
 	    if (hp <= 0)
         {
             isAlive = false;
-            Destroy(this);
         }
 
         if (isAlive)
         {
             UpdateAi();
-        }
-
-        if (Mathf.Abs(transform.position.x) >= 17F)
-        {
-            Destroy(this);
-        }
+        } 
     }
 
     protected virtual void UpdateAi()
     {}
 
+    protected virtual void AI_OnFloor()
+    { }
+
     public void GiveDamage(float f)
     {
         hp -= f;
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Floor")
+        {
+            if (!isAlive)
+            {
+                Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
+                Destroy(this.gameObject);
+            } else
+            {
+                AI_OnFloor();
+            }
+        } 
     }
 
     void OnTriggerEnter2D(Collider2D other)

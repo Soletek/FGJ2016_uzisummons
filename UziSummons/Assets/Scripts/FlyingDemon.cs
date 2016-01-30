@@ -24,10 +24,33 @@ public class FlyingDemon : Enemy
             pattern = AIpattern.RANDOM;
             transform.position = new Vector3(Random.Range(-10F, 10F), 10, 0);
         }
-        if (data.pattern == 2)
+        if (data.pattern == 2 || data.pattern == 3)
         {
             pattern = AIpattern.WAVE;
-            transform.position = new Vector3(-11, 6, 0);
+            patternDir = (data.pattern == 2) ? 1 : -1;
+            transform.position = new Vector3(-11 * patternDir, 6, 0);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        Rigidbody2D rbody = GetComponent<Rigidbody2D>();
+
+        if (isAlive)
+        {
+            if (true)
+            { // TODO (mode == flying) {
+                Vector2 forcePosition = (targetPosition - (Vector2)transform.position);
+                Vector2 forceDirection = forcePosition.normalized;
+                float speed = forcePosition.magnitude * speedMod;
+                Vector2 force = forceDirection.normalized * speed;
+
+                rbody.AddForce(force);
+            }
+        }
+        else {
+            // simulate gravity
+            rbody.AddForce(new Vector3(0, -15F, 0));
         }
     }
 

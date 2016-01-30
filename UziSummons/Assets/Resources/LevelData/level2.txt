@@ -1,0 +1,8 @@
+{
+    "waveSpawnTimer":15.0,
+    "waveLength":2.0, 
+    "enemies": [
+        {"enemyPrefab":"WalkingDemon", "amount":1, "pattern":1},
+        {"enemyPrefab":"WalkingDemon", "amount":1, "pattern":2}
+    ]
+}

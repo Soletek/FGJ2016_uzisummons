@@ -3,7 +3,6 @@
     "waveLength":1.0, 
     "enemies": [
         {"enemyPrefab":"FlyingDemon", "amount":10, "pattern":1},
-		{"enemyPrefab":"<pause>", "amount":4, "pattern":0},
         {"enemyPrefab":"FlyingDemon", "amount":20, "pattern":2}
     ]
 }
