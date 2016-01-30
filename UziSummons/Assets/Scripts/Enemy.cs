@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (hp == 0) hp = 50F;
+        if (hp == 0) hp = 150F;
         player = GameObject.Find("Player"); // TODO from creation
 	}
 
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour {
     {
         if (other.tag == "PlayerProjectile") {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
-            other.GetComponent<ProjectileScript>().ObjectCollision();
+            other.GetComponent<ProjectileScript>().ObjectCollision(1);
         }
     }
 }

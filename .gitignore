@@ -266,3 +266,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+*.unity
+UziSummons/Assets/prefab/Bullet.prefab
+UziSummons/Assets/prefab/Bullet.prefab

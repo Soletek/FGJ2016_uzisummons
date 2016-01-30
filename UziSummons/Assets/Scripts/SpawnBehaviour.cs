@@ -30,9 +30,13 @@ public class SpawnBehaviour : MonoBehaviour {
                 currentWaveEnemySpawnTimer = 0.0f;
                 if (currentLevel.enemies[currentWave].amount > 0)
                 {
-                    GameObject spawnedEnemy;
-                    spawnedEnemy = (GameObject)Instantiate(Resources.Load("Prefabs/" + currentLevel.enemies[currentWave].enemyPrefab), Vector3.zero, Quaternion.identity);  // prefabs need to go to Resources/Prefabs or otherwise everything is terrible
-                    spawnedEnemy.GetComponent<Enemy>().SetData(currentLevel.enemies[currentWave]);
+                    if (currentLevel.enemies[currentWave].enemyPrefab != "<pause>")
+                    {
+                        GameObject spawnedEnemy;
+                        spawnedEnemy = (GameObject)Instantiate(Resources.Load("Prefabs/" + currentLevel.enemies[currentWave].enemyPrefab), Vector3.zero, Quaternion.identity);  // prefabs need to go to Resources/Prefabs or otherwise everything is terrible
+                        spawnedEnemy.GetComponent<Enemy>().SetData(currentLevel.enemies[currentWave]);
+                    }
+
                     currentLevel.enemies[currentWave].amount -= 1;
                 } else
                 {

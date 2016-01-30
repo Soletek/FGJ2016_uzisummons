@@ -14,7 +14,7 @@ public class FlyingDemon : Enemy
 
     public GameObject projectilePrefab;
 
-    public float shootingCooldown;
+    public float shootingCooldown = 3.0F;
     public float moveCooldown;
 
     public override void SetData(LevelEnemyDataCollection data)
@@ -22,7 +22,7 @@ public class FlyingDemon : Enemy
         if (data.pattern == 1)
         {
             pattern = AIpattern.RANDOM;
-            transform.position = new Vector3(Random.Range(-10, 10), 10, 0);
+            transform.position = new Vector3(Random.Range(-10F, 10F), 10, 0);
         }
         if (data.pattern == 2)
         {
@@ -33,29 +33,39 @@ public class FlyingDemon : Enemy
 
     protected override void UpdateAi()
     {
+        if (transform.position.y < 10F)
+        {
+            shootingCooldown -= Time.deltaTime;
+            moveCooldown -= Time.deltaTime;
+        }
+
         if (state == AIstate.SUMMONED)
         {
             state = AIstate.SWAP_POS;
             if (pattern == AIpattern.RANDOM)
             {
-                targetPosition = new Vector2(Random.Range(-9, 9), Random.Range(5, 8));
+                targetPosition = new Vector2(Random.Range(-9F, 9F), Random.Range(5F, 8F));
             }
 
             if (pattern == AIpattern.WAVE)
             {
                 patternX = 10F * -patternDir;
-                targetPosition = new Vector2(patternX, Mathf.Sin(patternX) *2F + 6F);
+                targetPosition = new Vector2(patternX, Mathf.Sin(patternX) * 2F + 6F);
             }
         }
 
         if (state == AIstate.SWAP_POS)
         {
-            shootingCooldown -= Time.deltaTime;
             if (shootingCooldown < 0) Shoot(player);
 
             if (((Vector2)transform.position - targetPosition).magnitude <= 1.5F)
             {
-                //state = AIstate.SHOOTING;
+
+                if (pattern == AIpattern.RANDOM)
+                {
+                    moveCooldown = Random.Range(5F, 8F);
+                    state = AIstate.SHOOTING;
+                }
 
                 if (pattern == AIpattern.WAVE)
                 {
@@ -65,19 +75,31 @@ public class FlyingDemon : Enemy
             }
         }
 
+        if (state == AIstate.SHOOTING)
+        {
+            if (shootingCooldown < 0) Shoot(player);
+            if (moveCooldown < 0)
+            {
+                if (pattern == AIpattern.RANDOM)
+                {
+                    state = AIstate.SWAP_POS;
+                    targetPosition = new Vector2(Random.Range(-9F, 9F), Random.Range(5F, 8F));
+                }
+            }
+        }
     }
 
     void Shoot(GameObject target)
     {
         Vector2 shootvector = - (transform.position - target.transform.position) ;
         shootvector.Normalize();
-        shootingCooldown = 2F;
+        shootingCooldown = Random.Range(1.9F, 2.1F);
         GameObject g;
         g = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.2F, new Quaternion(0, 0, 0, 0));
-        ProjectileScript projectilescript = g.GetComponent<ProjectileScript>();
-        projectilescript.Speed = 8F;
-        projectilescript.damage = 10F;
-        projectilescript.GiveDirection(shootvector);  
+        ProjectileScript projectileScript = g.GetComponent<ProjectileScript>();
+        projectileScript.Speed = 8F;
+        projectileScript.damage = 10F;
+        projectileScript.GiveDirection(shootvector);  
     }
 
 }
