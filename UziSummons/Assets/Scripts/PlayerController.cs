@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour {
       //  if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         Oldmouseloc = Input.mousePosition;
 		controllmethod = Controllmethod.Controller;
+		ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
+		progresbar.DisableBar ();
 	}
 	
 	// Update is called once per frame
@@ -181,12 +183,15 @@ public class PlayerController : MonoBehaviour {
                 audioHandler.PlaySound("step2.bad");
 				ProgressBar progresbar = progressbar.GetComponent<ProgressBar> ();
 				progresbar.DisableHilight ();
+				float oldcooldown = Reloadcooldown;
                 Sweetspotused = true;
 				Reloadcooldown = Reloadcooldown + 1.0f;
 				if (Reloadcooldown > Reloadrate)
 				{
 					Reloadcooldown = Reloadrate;
 				}
+				oldcooldown = Reloadcooldown - oldcooldown;
+				progresbar.RemoveTime (oldcooldown);
 			}
 		}
 

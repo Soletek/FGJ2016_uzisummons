@@ -28,6 +28,10 @@ ModelImporter:
     100040: Leg 2
     100042: Uzi
     100044: Uzi.001
+    100046: Armature.002
+    100048: Cube.003
+    100050: Cube.004
+    100052: Cube.005
     400000: Foot
     400002: Foot.001
     400004: Hands
@@ -51,6 +55,10 @@ ModelImporter:
     400040: Leg 2
     400042: Uzi
     400044: Uzi.001
+    400046: Armature.002
+    400048: Cube.003
+    400050: Cube.004
+    400052: Cube.005
     2300000: Foot
     2300002: Foot.001
     2300004: Hands
@@ -63,6 +71,8 @@ ModelImporter:
     2300018: Torso
     2300020: Uzi
     2300022: Uzi.001
+    2300024: Cube.004
+    2300026: Cube.005
     3300000: Foot
     3300002: Foot.001
     3300004: Hands
@@ -75,6 +85,8 @@ ModelImporter:
     3300018: Torso
     3300020: Uzi
     3300022: Uzi.001
+    3300024: Cube.004
+    3300026: Cube.005
     4300000: Leg upper.002
     4300002: Foot.001
     4300004: Leg Lower.001
@@ -88,6 +100,9 @@ ModelImporter:
     4300020: Leg 2
     4300022: Uzi.001
     4300024: Uzi
+    4300026: Cube.003
+    4300028: Cube.005
+    4300030: Cube.004
     7400000: Leg upper.002|Foot 1.001Action
     7400002: Leg upper.002|Foot 1.001Action.001
     7400004: Leg upper.002|Foot 1.001Action.002
@@ -630,8 +645,14 @@ ModelImporter:
     7401078: Head|ArmatureAction.001
     7401080: Head|Foot.001Action.000
     7401082: Armature|Jump Animation
+    7401084: Armature.002|asd.001
+    7401086: Armature.002|Jump Animation
+    7401088: Armature.002|Jump Animation.002
+    7401090: Armature.002|asd
+    7401092: Armature.002|Move Animation
     9500000: //RootNode
     13700000: Leg 2
+    13700002: Cube.003
   materials:
     importMaterials: 1
     materialName: 0

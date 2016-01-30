@@ -67,6 +67,11 @@ public class ProgressBar : MonoBehaviour {
         progress += time;
     }
 
+	public void RemoveTime(float time)
+	{
+		barScale.x = barScale.x - time;
+	}
+
     public void ResetProgressBar()
     {
         progress = 0.0f;
