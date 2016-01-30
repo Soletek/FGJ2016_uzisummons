@@ -61,7 +61,8 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "PlayerProjectile") {
+        if (other.tag == "PlayerProjectile")
+        {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
         }

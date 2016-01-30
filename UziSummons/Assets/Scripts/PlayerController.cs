@@ -160,9 +160,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnGUI() {
 		GUILayout.Box (Clipsize.ToString());
-
-	}
-
+    }
 
 	public void GiveDamage(float f)
 	{
