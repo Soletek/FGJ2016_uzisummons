@@ -16,6 +16,16 @@ ModelImporter:
     100016: Leg upper.002
     100018: //RootNode
     100020: Torso
+    100022: Armature
+    100024: Bone
+    100026: Bone.001
+    100028: Bone.002
+    100030: Bone.002_end
+    100032: Bone.003
+    100034: Bone.004
+    100036: Bone.005
+    100038: Bone.005_end
+    100040: Leg 2
     400000: Foot
     400002: Foot.001
     400004: Hands
@@ -27,6 +37,16 @@ ModelImporter:
     400016: Leg upper.002
     400018: //RootNode
     400020: Torso
+    400022: Armature
+    400024: Bone
+    400026: Bone.001
+    400028: Bone.002
+    400030: Bone.002_end
+    400032: Bone.003
+    400034: Bone.004
+    400036: Bone.005
+    400038: Bone.005_end
+    400040: Leg 2
     2300000: Foot
     2300002: Foot.001
     2300004: Hands
@@ -57,6 +77,7 @@ ModelImporter:
     4300014: Torso
     4300016: Hands
     4300018: Head
+    4300020: Leg 2
     7400000: Leg upper.002|Foot 1.001Action
     7400002: Leg upper.002|Foot 1.001Action.001
     7400004: Leg upper.002|Foot 1.001Action.002
@@ -567,7 +588,39 @@ ModelImporter:
     7401014: Head|PlaneAction.002
     7401016: Head|PlaneAction.003
     7401018: Head|TorsoAction
+    7401020: Armature|Armature.001Action
+    7401022: Armature|ArmatureAction
+    7401024: Armature|ArmatureAction.001
+    7401026: Armature|Foot.001Action.000
+    7401028: Armature|Foot.001Action.001
+    7401030: Armature|FootAction.002
+    7401032: Armature|HeadAction.001
+    7401034: Armature|Leg Lower.001Action.001
+    7401036: Armature|Leg LowerAction.002
+    7401038: Armature|Leg upper.001Action
+    7401040: Armature|Leg upper.002Action.001
+    7401042: Armature|Leg upperAction.001
+    7401044: Armature|Move Animation
+    7401046: Armature|TorsoAction
+    7401048: Leg 2|ArmatureAction.001
+    7401050: Leg 2|Foot.001Action.000
+    7401052: Leg 2|Foot.001Action.001
+    7401054: Leg 2|FootAction.002
+    7401056: Leg 2|HeadAction.001
+    7401058: Leg 2|Leg Lower.001Action.001
+    7401060: Leg 2|Leg LowerAction.002
+    7401062: Leg 2|Leg upper.001Action
+    7401064: Leg 2|Leg upper.002Action.001
+    7401066: Leg 2|Leg upperAction.001
+    7401068: Leg 2|TorsoAction
+    7401070: Torso|ArmatureAction.001
+    7401072: Torso|Foot.001Action.000
+    7401074: Hands|ArmatureAction.001
+    7401076: Hands|Foot.001Action.000
+    7401078: Head|ArmatureAction.001
+    7401080: Head|Foot.001Action.000
     9500000: //RootNode
+    13700000: Leg 2
   materials:
     importMaterials: 1
     materialName: 0

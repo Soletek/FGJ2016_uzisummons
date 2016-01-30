@@ -103,13 +103,21 @@ public class PlayerController : MonoBehaviour {
 					}
 					else
 					{
-						Vector3 Cursorpos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-						Vector3 shootvector3 = -transform.position + Cursorpos;
-						Vector2 shootvector = (Vector2)shootvector3;
+						Vector3 mouse_pos;
+						Vector3 obj_pos;
+						float angle;
+						mouse_pos = Input.mousePosition;
+						mouse_pos.z = 0f;
+						obj_pos = Camera.main.WorldToScreenPoint (transform.position);
+						mouse_pos.x = mouse_pos.x - obj_pos.x;
+						mouse_pos.y = mouse_pos.y - obj_pos.y;
+						angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+						Vector3 newFwd = Quaternion.Euler (new Vector3 (0,0,angle)) * Vector3.right;
+						Vector3 shootvector = newFwd;
 						shootvector.Normalize ();
 						Shootingcooldown = Firerate;
 						GameObject g;
-						g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * 0.5f, new Quaternion (0, 0, 0, 0));
+						g = (GameObject)Instantiate (projectile, transform.position + shootvector * 1.0F, new Quaternion (0, 0, 0, 0));
 						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
 						projectilescript.GiveDirection (shootvector);
 					}
