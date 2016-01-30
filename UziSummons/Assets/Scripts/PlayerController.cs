@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour {
 						lastshot = shootvector;
 						Shootingcooldown = Firerate;
 						GameObject g;
-						g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
+						g = (GameObject)Instantiate (projectile, (Vector2)Righthand.transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
 						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
 						projectilescript.GiveDirection (shootvector);
 					} else {
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
 						shootvector.Normalize ();
 						Shootingcooldown = Firerate;
 						GameObject g;
-						g = (GameObject)Instantiate (projectile, transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
+						g = (GameObject)Instantiate (projectile, Righthand.transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
 						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
 						projectilescript.GiveDirection (shootvector);
 					}
