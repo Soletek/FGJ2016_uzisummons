@@ -54,6 +54,18 @@ public class FlyingDemon : Enemy
         }
     }
 
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Floor")
+        {
+            if (!isAlive)
+            {
+                Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
     protected override void UpdateAi()
     {
         if (transform.position.y < 10F)

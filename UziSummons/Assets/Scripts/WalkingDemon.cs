@@ -36,12 +36,32 @@ public class WalkingDemon : Enemy {
 
         if (state == AIstate.STOPPED)
         {
-            if (stateTimer < 0) state = AIstate.WALKING;
+            if (stateTimer < 0)
+            {
+                int rand = Random.Range(0, 4) + 1;
+
+                if (rand <= 2) {
+                    state = AIstate.WALKING;
+                    stateTimer = Random.Range(4F, 6F);
+                }
+
+                if (rand > 2)
+                {
+                    state = AIstate.WALKING;
+                    stateTimer = Random.Range(4F, 6F);
+                }
+            }
+        }
+
+        if (state == AIstate.WALKING)
+        {
+            if (stateTimer < 0) state = AIstate.STOPPED;
         }
 
         if (state == AIstate.ATTACKING_1)
         {
-            if (stateTimer < 0) state = AIstate.WALKING;
+            if (stateTimer < 0) {
+                state = AIstate.STOPPED;
 
             // TODO
         }
@@ -69,22 +89,25 @@ public class WalkingDemon : Enemy {
 
     }
 
-    protected override void AI_OnFloor()
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if (state == AIstate.SUMMONED)
+        if (coll.gameObject.tag == "Floor")
         {
-            audioHandler.PlaySound("ImpactMetal_big");
-            GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(1.0F);
-            state = AIstate.STOPPED;
-            stateTimer = 1.2F;
+            if (state == AIstate.SUMMONED)
+            {
+                audioHandler.PlaySound("ImpactMetal_big");
+                GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(1.0F);
+                state = AIstate.STOPPED;
+                stateTimer = 1.2F;
+            }
         }
-   
     }
 
-    void Shoot(GameObject target)
+
+    void Shoot(Vector3 angle)
     {
         // TODO WORK
-        Vector2 shootvector = -(transform.position - target.transform.position);
+        Vector2 shootvector = angle;
         shootvector.Normalize();
         shootingCooldown = Random.Range(1.9F, 2.1F);
         GameObject g;

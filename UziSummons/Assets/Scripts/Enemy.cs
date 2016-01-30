@@ -8,10 +8,9 @@ public class Enemy : MonoBehaviour {
     public Vector2 targetPosition;
     public GameObject player;
     public float speedMod = 4.0F;
+
     public AudioHandler audioHandler;
-
     public GameObject destruction;
-
 
     // Use this for initialization
     void Start () {
@@ -23,11 +22,8 @@ public class Enemy : MonoBehaviour {
     public virtual void SetData(LevelEnemyDataCollection data)
     {}
 
-    
-	
 	// Update is called once per frame
 	void Update () {
-
 	    if (hp <= 0)
         {
             isAlive = false;
@@ -36,33 +32,17 @@ public class Enemy : MonoBehaviour {
         if (isAlive)
         {
             UpdateAi();
-        } 
+        }
+
+        HardLimits();
     }
 
     protected virtual void UpdateAi()
     {}
 
-    protected virtual void AI_OnFloor()
-    { }
-
     public void GiveDamage(float f)
     {
         hp -= f;
-    }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Floor")
-        {
-            if (!isAlive)
-            {
-                Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
-                Destroy(this.gameObject);
-            } else
-            {
-                AI_OnFloor();
-            }
-        } 
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -72,10 +52,19 @@ public class Enemy : MonoBehaviour {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
             GetComponent<Rigidbody2D>().AddForce(other.GetComponent<Rigidbody2D>().velocity * 3F);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
-
-            audioHandler.PlaySound("BodyHit1");
         }
     }
+
+
+	void HardLimits()
+	{
+		if (transform.position.x < -11.2) {
+			transform.position = new Vector3 (11.2F, transform.position.y, 0);
+		}
+		if (transform.position.x > 11.2) {
+			transform.position = new Vector3 (-11.2F, transform.position.y, 0);
+		}
+	}
 }
 
 

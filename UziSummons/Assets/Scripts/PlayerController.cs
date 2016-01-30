@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 			Shooting ();
 		//	Debug.Log (Reloadcooldown);
 		}
+		HardLimits ();
 	
 	}
 
@@ -321,5 +322,17 @@ public class PlayerController : MonoBehaviour {
 		}
 			
 	}
+
+    void HardLimits()
+    {
+        if (transform.position.x < -11.2)
+        {
+            transform.position = new Vector3(11.2F, transform.position.y, 0);
+        }
+        if (transform.position.x > 11.2)
+        {
+            transform.position = new Vector3(-11.2F, transform.position.y, 0);
+        }
+    }
 
 }
