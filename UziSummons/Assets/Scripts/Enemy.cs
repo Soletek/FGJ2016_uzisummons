@@ -52,6 +52,8 @@ public class Enemy : MonoBehaviour {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
             GetComponent<Rigidbody2D>().AddForce(other.GetComponent<Rigidbody2D>().velocity * 3F);
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
+
+            audioHandler.PlaySound("BodyHit1");
         }
     }
 

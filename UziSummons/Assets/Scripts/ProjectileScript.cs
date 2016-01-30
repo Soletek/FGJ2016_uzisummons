@@ -8,6 +8,7 @@ public class ProjectileScript : MonoBehaviour {
 	public float Speed = 25.0f;
 	public float lifetime = 6.0f;
     public float damage = 20.0f;
+    public float gravity = 0.0F;
 
     [SerializeField]
     AudioClip soundName;
@@ -19,9 +20,14 @@ public class ProjectileScript : MonoBehaviour {
         AudioHandler audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         audioHandler.PlaySound(soundName);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void FixedUpdate()
+    {
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, gravity));
+    }
+
+    // Update is called once per frame
+    void Update () {
 		lifetime = lifetime - Time.deltaTime;
 		if (lifetime < 0 ) {
 			Destroy (gameObject);

@@ -47,7 +47,7 @@ public class WalkingDemon : Enemy {
 
                 if (rand > 2)
                 {
-                    state = AIstate.WALKING;
+                    state = AIstate.ATTACKING_1;
                     stateTimer = Random.Range(4F, 6F);
                 }
             }
@@ -55,7 +55,11 @@ public class WalkingDemon : Enemy {
 
         if (state == AIstate.WALKING)
         {
-            if (stateTimer < 0) state = AIstate.STOPPED;
+            if (stateTimer < 0)
+            {
+                state = AIstate.STOPPED;
+                stateTimer = 1.5F;
+            }
         }
 
         if (state == AIstate.ATTACKING_1)
@@ -63,13 +67,19 @@ public class WalkingDemon : Enemy {
             if (stateTimer < 0)
             {
                 state = AIstate.STOPPED;
+                stateTimer = 1.5F;
             }
-            // TODO
+
+            if (shootingCooldown < 0) Shoot();
         }
 
         if (state == AIstate.ATTACKING_2)
         {
-            if (stateTimer < 0) state = AIstate.WALKING;
+            if (stateTimer < 0)
+            {
+                state = AIstate.STOPPED;
+                stateTimer = 1.5F;
+            }
 
             // TODO
         }
@@ -88,6 +98,11 @@ public class WalkingDemon : Enemy {
             rbody.AddForce(new Vector3(95F * patternDir, 0, 0));
         }
 
+        if (!isAlive)
+        {
+            Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
+            Destroy(this.gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -105,17 +120,17 @@ public class WalkingDemon : Enemy {
     }
 
 
-    void Shoot(Vector3 angle)
+    void Shoot()
     {
         // TODO WORK
-        Vector2 shootvector = angle;
+        Vector2 shootvector = new Vector2(Random.Range(-1F, 1F), .7F);
         shootvector.Normalize();
-        shootingCooldown = Random.Range(1.9F, 2.1F);
-        GameObject g;
-        g = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.2F, new Quaternion(0, 0, 0, 0));
-        ProjectileScript projectileScript = g.GetComponent<ProjectileScript>();
-        projectileScript.Speed = 8F;
-        projectileScript.damage = 10F;
+        shootingCooldown = .06F;
+        GameObject bullet = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.2F, new Quaternion(0, 0, 0, 0));
+        ProjectileScript projectileScript = bullet.GetComponent<ProjectileScript>();
+        projectileScript.Speed = 18F;
+        projectileScript.damage = 30F;
+        projectileScript.gravity = -20F;
         projectileScript.GiveDirection(shootvector);
     }
 }
