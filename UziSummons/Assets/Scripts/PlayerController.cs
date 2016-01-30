@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour {
 			Shooting ();
 		//	Debug.Log (Reloadcooldown);
 		}
+		HardLimits ();
 	
 	}
 
@@ -318,6 +319,16 @@ public class PlayerController : MonoBehaviour {
 			Righthand.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, Vector2.Angle (Vector2.right, lastshot) - 90)); 
 		}
 			
+	}
+
+	void HardLimits()
+	{
+		if (transform.position.x < -11) {
+			transform.position = new Vector3 (11, transform.position.y, transform.position.z);
+		}
+		if (transform.position.x > 11) {
+			transform.position = new Vector3 (-11, transform.position.y, transform.position.y);
+		}
 	}
 
 }

@@ -19,7 +19,7 @@ public class ProgressBar : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public void CalledUpdate (float progress) {
 	    if (barScale.x < barRunTimeInSeconds)
         {
             barScale.x = bar.transform.localScale.x + Time.deltaTime;

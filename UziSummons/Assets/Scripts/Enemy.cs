@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour {
         {
             UpdateAi();
         }
+
+		HardLimits ();
 	}
 
     protected virtual void UpdateAi()
@@ -68,6 +70,17 @@ public class Enemy : MonoBehaviour {
             other.GetComponent<ProjectileScript>().ObjectCollision(1);
         }
     }
+
+
+	void HardLimits()
+	{
+		if (transform.position.x < -11) {
+			transform.position = new Vector3 (11, transform.position.y, transform.position.z);
+		}
+		if (transform.position.x > 11) {
+			transform.position = new Vector3 (-11, transform.position.y, transform.position.y);
+		}
+	}
 }
 
 
