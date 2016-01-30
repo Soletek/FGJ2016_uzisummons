@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour {
     {
         if (other.tag == "PlayerProjectile") {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
-            Destroy(other.gameObject);
+            other.GetComponent<ProjectileScript>().ObjectCollision();
         }
     }
 }

@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "EnemyProjectile")
         {
             GiveDamage(other.GetComponent<ProjectileScript>().damage);
-            Destroy(other.gameObject);
+            other.GetComponent<ProjectileScript>().ObjectCollision();
         }
     }
 }

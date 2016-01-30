@@ -33,10 +33,11 @@ public class ProjectileScript : MonoBehaviour {
 		GetComponent<Rigidbody2D> ().velocity = direction * Speed;
 	}
 
-
-    void OnDestroy()
+    // called when projectile collides with another causing a particle effect
+    public void ObjectCollision()
     {
         Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
+        Destroy(this.gameObject);
     }
 
 
