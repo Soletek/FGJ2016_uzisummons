@@ -53,7 +53,6 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("COLL " + other.ToString());
         if (other.tag == "PlayerProjectile") {
             hp = hp - other.GetComponent<ProjectileScript>().damage;
             Destroy(other);
