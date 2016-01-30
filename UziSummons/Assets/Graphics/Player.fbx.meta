@@ -26,6 +26,8 @@ ModelImporter:
     100036: Bone.005
     100038: Bone.005_end
     100040: Leg 2
+    100042: Uzi
+    100044: Uzi.001
     400000: Foot
     400002: Foot.001
     400004: Hands
@@ -47,6 +49,8 @@ ModelImporter:
     400036: Bone.005
     400038: Bone.005_end
     400040: Leg 2
+    400042: Uzi
+    400044: Uzi.001
     2300000: Foot
     2300002: Foot.001
     2300004: Hands
@@ -57,6 +61,8 @@ ModelImporter:
     2300014: Leg upper.001
     2300016: Leg upper.002
     2300018: Torso
+    2300020: Uzi
+    2300022: Uzi.001
     3300000: Foot
     3300002: Foot.001
     3300004: Hands
@@ -67,6 +73,8 @@ ModelImporter:
     3300014: Leg upper.001
     3300016: Leg upper.002
     3300018: Torso
+    3300020: Uzi
+    3300022: Uzi.001
     4300000: Leg upper.002
     4300002: Foot.001
     4300004: Leg Lower.001
@@ -78,6 +86,8 @@ ModelImporter:
     4300016: Hands
     4300018: Head
     4300020: Leg 2
+    4300022: Uzi.001
+    4300024: Uzi
     7400000: Leg upper.002|Foot 1.001Action
     7400002: Leg upper.002|Foot 1.001Action.001
     7400004: Leg upper.002|Foot 1.001Action.002

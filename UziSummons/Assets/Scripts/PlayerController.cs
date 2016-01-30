@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour {
 	bool Sweetspotused = true;
 	bool Isreloading = false;
 	bool Isdashing = false;
+	bool Islookingright = true;
+	public GameObject Character;
+	public float ShootSpawndistance = 1.0f;
 	public float speed = 5.0f;
 	public float Reloadsweetspotlocation = 1.0f;
 	public float Reloadsweetspotleeway = 0.7f;
@@ -18,7 +21,6 @@ public class PlayerController : MonoBehaviour {
 	public bool Canjump = true;
 	public float Firerate = 0.25f;
 	public float Reloadrate = 2.0f;
-	public GameObject Lefthand;
 	public GameObject Righthand;
 	float Dashingcooldown = 0.0f;
 	float Reloadcooldown = 0.0f;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 	float Spread = 0.1f;
 	public int Clipsize = 60;
 	Vector3 Oldmouseloc;
+	Vector2 lastshot;
 
 	public GameObject projectile;
 
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Modelhandling ();
 		ControllCheck ();
 		if (AliveCheck()) {
 			Cooldowns ();
@@ -74,14 +78,20 @@ public class PlayerController : MonoBehaviour {
 
 			if ((Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.D)) && !(Input.GetKey (KeyCode.A) && (Input.GetKey (KeyCode.D)))) {
 				if (Input.GetKey (KeyCode.A)) {
+					Islookingright = false;
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				} else {
+					Islookingright = true;
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				}
 			} else {
 				
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
-				
+				if (Input.GetAxis ("Horizontal") > 0.0f) {
+					Islookingright = true;
+				} else if (Input.GetAxis ("Horizontal") < 0.0f) {
+					Islookingright = false;
+				}
 				}
 		}
 
@@ -103,9 +113,10 @@ public class PlayerController : MonoBehaviour {
 						Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
 						shootvector = shootvector + new Vector2 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
 						shootvector.Normalize ();
+						lastshot = shootvector;
 						Shootingcooldown = Firerate;
 						GameObject g;
-						g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * 0.5F, new Quaternion (0, 0, 0, 0));
+						g = (GameObject)Instantiate (projectile, (Vector2)transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
 						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
 						projectilescript.GiveDirection (shootvector);
 					}
@@ -122,17 +133,18 @@ public class PlayerController : MonoBehaviour {
 						angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
 						Vector3 newFwd = Quaternion.Euler (new Vector3 (0,0,angle)) * Vector3.right;
 						Vector3 shootvector = newFwd;
+						shootvector = shootvector + new Vector3 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
 						shootvector.Normalize ();
 						Shootingcooldown = Firerate;
 						GameObject g;
-						g = (GameObject)Instantiate (projectile, transform.position + shootvector * 1.0F, new Quaternion (0, 0, 0, 0));
+						g = (GameObject)Instantiate (projectile, transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
 						ProjectileScript projectilescript = g.GetComponent<ProjectileScript> ();
 						projectilescript.GiveDirection (shootvector);
 					}
 				}
 			}
 
-		} else if ((Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R)) && Sweetspotused == false)
+		} else if ((Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) && Sweetspotused == false)
 		{
 			if ((Reloadsweetspotlocation - Reloadsweetspotleeway) <= Reloadcooldown && Reloadcooldown <= (Reloadsweetspotlocation + Reloadsweetspotleeway)) {
 				Isreloading = false;
@@ -255,5 +267,31 @@ public class PlayerController : MonoBehaviour {
 		}
 		Oldmouseloc = Input.mousePosition;
 		return false;
+	}
+
+	void Modelhandling()
+	{
+		if (Islookingright) {
+			Character.transform.rotation = new Quaternion (0, -180, 0, 0);
+			
+		} else {
+			Character.transform.rotation = new Quaternion (0, 0,0,0);
+		}
+
+		if (controllmethod == Controllmethod.Mouse) {
+			Vector3 mouse_pos;
+			Vector3 obj_pos;
+			float angle;
+			mouse_pos = Input.mousePosition;
+			mouse_pos.z = 10;
+			obj_pos = Camera.main.WorldToScreenPoint (transform.position);
+			mouse_pos.x = mouse_pos.x - obj_pos.x;
+			mouse_pos.y = mouse_pos.y - obj_pos.y;
+			angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+			Righthand.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, angle - 90));
+		} else {
+			Righthand.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, Vector2.Angle (Vector2.right, lastshot) - 90)); 
+		}
+			
 	}
 }
