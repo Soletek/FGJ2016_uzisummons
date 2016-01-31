@@ -61,7 +61,7 @@ public class SpawnBehaviour : MonoBehaviour {
     // will not spawn a new wave unless all enemies are dead
     void SpawnWave() {
         enemiesInScene.Remove(null);
-        Debug.Log(currentLevel.enemies[currentWave].spawnNextImmediatly);
+     //   Debug.Log(currentLevel.enemies[currentWave].spawnNextImmediatly);
         if(enemiesInScene.Count > 0 && currentLevel.enemies[currentWave].spawnNextImmediatly == "no")
         {
             return;
