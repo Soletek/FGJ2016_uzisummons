@@ -62,7 +62,6 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-
 	void HardLimits()
 	{
 		if (transform.position.x < -11.2) {

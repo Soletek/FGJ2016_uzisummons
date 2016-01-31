@@ -341,7 +341,7 @@ public class PlayerController : MonoBehaviour {
             else
                 Righthand.transform.localRotation = Quaternion.Euler(new Vector3(angle + 90, 0, 0));
         } else {
-            if (Islookingright)
+            if (Islookingright) 
                 Righthand.transform.localRotation = Quaternion.Euler(new Vector3(Vector2.Angle(Vector2.right, lastshot) - 90, 0, 0));
             else
                 Righthand.transform.localRotation = Quaternion.Euler(new Vector3(Vector2.Angle(Vector2.right, lastshot) - 90, 0, 0)); // TODO

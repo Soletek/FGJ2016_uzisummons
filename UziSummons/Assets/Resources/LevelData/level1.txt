@@ -1,9 +1,7 @@
 {
     "waveSpawnTimer":0.0,
-    "waveLength":1.0, 
+    "waveLength":3.0, 
     "enemies": [
-        {"enemyPrefab":"FlyingDemon", "amount":10, "pattern":1},
-        {"enemyPrefab":"FlyingDemon", "amount":20, "pattern":2},
-		{"enemyPrefab":"WalkingDemon", "amount":1, "pattern":2}
+        {"enemyPrefab":"FlyingDemon", "amount":12, "pattern":1, "spawnImmediately":"no"}
     ]
 }

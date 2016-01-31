@@ -5,6 +5,8 @@ public class AudioHandler : MonoBehaviour {
 
     public GameObject audioPrefab;
 
+    public AudioClip[] music;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,12 +18,20 @@ public class AudioHandler : MonoBehaviour {
 	}
 
     // ids
-    //  0 = silence;
-    //  1 = main;
-    //  2 = boss;
+    //  -1 = silence;
+    //  0 = main;
+    //  1 = boss;
     public void SwapMusicTrack(int id)
     {
-        // TODO
+        if (id == -1)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+        else
+        {
+            GetComponent<AudioSource>().clip = music[id];
+            GetComponent<AudioSource>().Play();
+        }
     }
 
     public void PlaySound(string clipName, float pitch = -1F)
