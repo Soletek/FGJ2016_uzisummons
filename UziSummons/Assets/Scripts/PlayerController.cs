@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -51,6 +52,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (hp < 0) {
+			SceneManager.LoadScene (1);
+		}
 		FigureTruelastshot ();
 		Modelhandling ();
 		ControllCheck ();
@@ -256,7 +260,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	}
 
-	void OnCollisionEnter2D(Collision2D coll)
+	void OnCollisionStay2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Floor") {
 			Canjump = true;
@@ -420,8 +424,11 @@ public class PlayerController : MonoBehaviour {
 
 	void FigureTruelastshot()
 	{
+		if(new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert")) != Vector2.zero)
+		{
 		Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
 		truelastshot = shootvector;
+	}
 	}
 
 }
