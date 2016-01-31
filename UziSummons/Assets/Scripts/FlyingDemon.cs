@@ -34,6 +34,11 @@ public class FlyingDemon : Enemy
         // Level music (temp maybe)
         if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         audioHandler.SwapMusicTrack(0);
+
+        if (Random.Range(0, 5) == 0)
+        {
+            audioHandler.PlaySound("Imps laughing"); ;
+        }
     }
 
     void FixedUpdate()
@@ -81,6 +86,13 @@ public class FlyingDemon : Enemy
 
     protected override void UpdateAI()
     {
+
+        if ((!isAlive) && hp > -100)
+        {
+            audioHandler.PlaySound("ImpactMetal_big");
+            hp = -200;
+        } 
+
         if (transform.position.y < 10F)
         {
             shootingCooldown -= Time.deltaTime;

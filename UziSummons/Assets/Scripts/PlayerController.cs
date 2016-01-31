@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour {
 	float Spread = 0.1f;
 	public int Clipsize = 60;
 	Vector3 Oldmouseloc;
-	Vector2 lastshot;
 	Vector2 truelastshot;
 	public GameObject projectile;
     public AudioHandler audioHandler;
@@ -41,8 +40,12 @@ public class PlayerController : MonoBehaviour {
 	float Flyingcooldown = 0.0f;
 	float Flyingtime = 0.5f;
 
-	// Use this for initialization
-	void Start () {
+    int speedHash = Animator.StringToHash("Speed");
+    Animator anim;
+
+    // Use this for initialization
+    void Start () {
+        anim = GetComponentInChildren<Animator>();
         if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         Oldmouseloc = Input.mousePosition;
 		controllmethod = Controllmethod.Controller;
@@ -99,26 +102,31 @@ public class PlayerController : MonoBehaviour {
 			if ((Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.D)) && !(Input.GetKey (KeyCode.A) && (Input.GetKey (KeyCode.D)))) {
 				if (Input.GetKey (KeyCode.A)) {
 					Islookingright = false;
-					//Play running animation
+                    //Play running animation
+                    anim.SetFloat(speedHash, 1F);
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				} else {
 					Islookingright = true;
-					//Play running animation
-					GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
+                    //Play running animation
+                    anim.SetFloat(speedHash, 1F);
+                    GetComponent<Rigidbody2D> ().velocity = new Vector2 (1.0f * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				}
 			} else {
 				
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				if (Input.GetAxis ("Horizontal") > 0.0f) {
 					Islookingright = true;
-					//Play running animation
-				} else if (Input.GetAxis ("Horizontal") < 0.0f) {
+                    //Play running animation
+                    anim.SetFloat(speedHash, 1F);
+                } else if (Input.GetAxis ("Horizontal") < 0.0f) {
 					Islookingright = false;
-					//Play running animation
-				} else {
+                    //Play running animation
+                    anim.SetFloat(speedHash, 1F);
+                } else {
 
-					//Stop runnin animation
-				}
+                    //Stop runnin animation
+                    anim.SetFloat(speedHash, 0F);
+                }
 				}
 		}
 
@@ -146,7 +154,6 @@ public class PlayerController : MonoBehaviour {
 						Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
 						shootvector = shootvector + new Vector2 (shootvector.magnitude * Random.Range (-Spread, Spread), shootvector.magnitude * Random.Range (-Spread, Spread));
 						shootvector.Normalize ();
-						lastshot = shootvector;
 						Shootingcooldown = Firerate;
 						GameObject g;
 						g = (GameObject)Instantiate (projectile, (Vector2)Righthand.transform.position + shootvector * ShootSpawndistance, new Quaternion (0, 0, 0, 0));
