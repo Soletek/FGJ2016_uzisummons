@@ -17,7 +17,7 @@ public class SpawnBehaviour : MonoBehaviour {
     int levelNumber = 1;
 	// Use this for initialization
 	void Start () {
-        LoadLevelData("level1.txt");
+        LoadLevelData("level2.txt");
 	}
 	
 	// Update is called once per frame
@@ -65,9 +65,11 @@ public class SpawnBehaviour : MonoBehaviour {
         {
             return;
         }
+        
         if (currentLevel.enemies.Length <= currentWave + 1)
         {
             // get next level
+
             levelNumber += 1;
             try {
                 string path = "LevelData/level" + levelNumber.ToString() + ".txt";
@@ -75,7 +77,7 @@ public class SpawnBehaviour : MonoBehaviour {
             }
             catch
             {
-                // lol
+                Debug.Log("LevelData/level" + levelNumber.ToString() + ".txt");
             }
         }
         else {

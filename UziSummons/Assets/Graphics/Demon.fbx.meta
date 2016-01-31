@@ -401,6 +401,12 @@ ModelImporter:
     7400008: metarig|ArmatureAction.001
     7400010: metarig|Crashing Animation
     7400012: metarig|Flying Animation
+    7400014: metarig|Death Animation
+    7400016: metarig|First Attack animation
+    7400018: metarig|Jump Attack Animation
+    7400020: metarig|Normal Attack Animation
+    7400022: metarig|Rush Animation
+    7400024: Cube|Jump Attack Animation
     9500000: //RootNode
     13700000: Cube
     13700002: Cube.001

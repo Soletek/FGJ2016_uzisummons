@@ -9,7 +9,7 @@ public class AudioHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        SwapMusicTrack(0);
 	}
 	
 	// Update is called once per frame

@@ -37,7 +37,7 @@ public class ProjectileScript : MonoBehaviour {
 	
         if (transform.position.y <= 0)
         {
-            audioHandler.PlaySound("");
+            audioHandler.PlaySound("Metalhit2");
             ObjectCollision();
         }
 	}
