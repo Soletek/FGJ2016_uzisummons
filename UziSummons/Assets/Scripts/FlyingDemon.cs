@@ -35,7 +35,7 @@ public class FlyingDemon : Enemy
         if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         audioHandler.SwapMusicTrack(0);
 
-        if (Random.Range(0, 5) == 0)
+        if (Random.Range(0, 3) == 1)
         {
             audioHandler.PlaySound("Imps laughing"); ;
         }
