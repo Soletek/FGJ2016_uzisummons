@@ -116,22 +116,25 @@ public class PlayerController : MonoBehaviour {
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
 				if (Input.GetAxis ("RightstickHori") > 0.0f) {
 					Islookingright = true;
-<<<<<<< HEAD        anim.SetFloat(speedHash, 1F);
+       				anim.SetFloat(speedHash, 1F);
                     //Play running animation
                 } else if (Input.GetAxis ("RightstickHori") < 0.0f) {
-=======
-                    //Play running animation
-                      anim.SetFloat(speedHash, 0F);
-                } else if (Input.GetAxis ("Horizontal") < 0.0f) {
->>>>>>> origin/master
-					Islookingright = false;
-                    //Play running animation
-                    anim.SetFloat(speedHash, 1F);
-                } else {
 
-                    //Stop runnin animation
-                    anim.SetFloat(speedHash, 0F);
-                }
+                    //Play running animation
+					Islookingright = false;
+                      anim.SetFloat(speedHash, 1F);
+                } 
+				if (Input.GetAxis ("Horizontal") > 0.0f) {
+					anim.SetFloat(speedHash, 1F);
+					//Play running animation
+				} else if (Input.GetAxis ("Horizontal") < 0.0f) {
+
+					anim.SetFloat(speedHash, 1F);
+				} 
+				else
+				anim.SetFloat (speedHash, 0F);
+
+
 				}
 		}
 
