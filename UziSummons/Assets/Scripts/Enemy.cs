@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
     public AudioHandler audioHandler;
     public GameObject destruction;
 
+    protected Animator anim;
+
     // Use this for initialization
     void Start () {
         if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
@@ -64,13 +66,13 @@ public class Enemy : MonoBehaviour {
 
 	void HardLimits()
 	{
-		if (transform.position.x < -11.2) {
-			transform.position = new Vector3 (11.2F, transform.position.y, 0);
+		if (transform.position.x < -15.2) {
+			transform.position = new Vector3 (11.4F, transform.position.y, 0);
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
             ResetAI();
         }
-		if (transform.position.x > 11.2) {
-			transform.position = new Vector3 (-11.2F, transform.position.y, 0);
+		if (transform.position.x > 15.2) {
+			transform.position = new Vector3 (-11.4F, transform.position.y, 0);
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
             ResetAI();
         }
