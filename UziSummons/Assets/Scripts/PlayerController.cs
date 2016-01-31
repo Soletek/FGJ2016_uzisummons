@@ -32,9 +32,13 @@ public class PlayerController : MonoBehaviour {
 	public int Clipsize = 60;
 	Vector3 Oldmouseloc;
 	Vector2 lastshot;
+	Vector2 truelastshot;
 	public GameObject projectile;
     public AudioHandler audioHandler;
 	public Texture2D Crosshair;
+	bool Isflying = false;
+	float Flyingcooldown = 0.0f;
+	float Flyingtime = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -47,11 +51,14 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		FigureTruelastshot ();
 		Modelhandling ();
 		ControllCheck ();
 		if (AliveCheck()) {
 			Cooldowns ();
-			Movementcheck ();
+			if (!Isflying) {
+				Movementcheck ();
+			}
 			Shooting ();
 		//	Debug.Log (Reloadcooldown);
 		}
@@ -164,8 +171,10 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 					else{
-
-                        audioHandler.PlaySound("click");
+					if (Shootingcooldown > 0) {
+						Shootingcooldown = Firerate;
+						audioHandler.PlaySound ("click");
+					}
                 }
 
 			}
@@ -234,6 +243,16 @@ public class PlayerController : MonoBehaviour {
 				Isdashing = false;
 			}
 
+		
+			}
+
+	
+	if (Flyingcooldown > 0) {
+		Flyingcooldown = Flyingcooldown - timer;
+		if (Flyingcooldown <= 0)
+		{
+			Isflying = false;
+		}
 	}
 	}
 
@@ -241,6 +260,28 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Floor") {
 			Canjump = true;
+		}
+
+		if (coll.gameObject.tag == "Enemy") {
+			if (coll.gameObject.transform.position.x > transform.position.x) {
+				if (!Isflying) {
+					Canjump = false;
+					hp = hp - 10.0f;
+					Isflying = true;
+					Flyingcooldown = Flyingtime;
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-10.0f, 10.0f);
+				}
+				
+			} else {
+				if (!Isflying) {
+					Canjump = false;
+					hp = hp - 10.0f;
+					Isflying = true;
+					Flyingcooldown = Flyingtime;
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (10.0f, 10.0f);
+				}
+
+			}
 		}
 	}
 
@@ -341,11 +382,20 @@ public class PlayerController : MonoBehaviour {
             else
                 Righthand.transform.localRotation = Quaternion.Euler(new Vector3(angle + 90, 0, 0));
         } else {
-            if (Islookingright)
-                Righthand.transform.localRotation = Quaternion.Euler(new Vector3(Vector2.Angle(Vector2.right, lastshot) - 90, 0, 0));
-            else
-                Righthand.transform.localRotation = Quaternion.Euler(new Vector3(Vector2.Angle(Vector2.right, lastshot) - 90, 0, 0)); // TODO
-        }
+			float angle;
+			Vector3 location;
+			location =  truelastshot;
+
+
+			if (Islookingright) {
+				angle = Mathf.Atan2 (location.x, -location.y) * Mathf.Rad2Deg;
+				Righthand.transform.localRotation = Quaternion.Euler (new Vector3 (-angle, 0, 0));
+			} else {
+				angle = Mathf.Atan2 (-location.x,  location.y) * Mathf.Rad2Deg;
+				Righthand.transform.localRotation = Quaternion.Euler (new Vector3 (angle + 180, 0, 0));
+			}
+	
+		}
 			
 	}
 
@@ -369,6 +419,12 @@ public class PlayerController : MonoBehaviour {
 		}
 		GUILayout.Box (Clipsize.ToString());
 		GUILayout.Box ( hp.ToString());
+	}
+
+	void FigureTruelastshot()
+	{
+		Vector2 shootvector = new Vector2 (Input.GetAxis ("RightstickHori"), Input.GetAxis ("RightstickVert"));
+		truelastshot = shootvector;
 	}
 
 }
