@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
     public AudioHandler audioHandler;
     public GameObject destruction;
 
+    protected Animator anim;
+
     // Use this for initialization
     void Start () {
         if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();

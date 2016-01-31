@@ -15,6 +15,12 @@ public class WalkingDemon : Enemy {
     public float shootingCooldown = 3.0F;
     public float stateTimer;
 
+    int anim_A1 = Animator.StringToHash("Attack1");
+    int anim_A2 = Animator.StringToHash("Attack2");
+    int anim_A2_end = Animator.StringToHash("Attack2End");
+    int anim_Dash = Animator.StringToHash("Charge");
+    int anim_Death = Animator.StringToHash("Death");
+
     public override void SetData(LevelEnemyDataCollection data)
     {
         if (data.pattern == 1)
@@ -52,18 +58,21 @@ public class WalkingDemon : Enemy {
                     state = AIstate.ATTACKING_2;
                     stateTimer = 0.5F;
                     substate = 0;
+                    anim.SetTrigger(anim_A1);
                 }
 
                 if (rotation == 1)
                 {
                     state = AIstate.ATTACKING_1;
                     stateTimer = 4F;
+                    anim.SetTrigger(anim_A2);
                 }
 
                 if (rotation == 2)
                 {
                     state = AIstate.WALKING;
                     stateTimer = 2.8F;
+                    anim.SetTrigger(anim_Dash);
                 }
 
             }
@@ -89,6 +98,7 @@ public class WalkingDemon : Enemy {
             {
                 state = AIstate.STOPPED;
                 stateTimer = 1.5F;
+                anim.SetTrigger(anim_A2_end);
             }
 
             if (shootingCooldown < 0) Shoot();
@@ -137,8 +147,12 @@ public class WalkingDemon : Enemy {
 
         if (!isAlive)
         {
-            Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
-            Destroy(this.gameObject);
+            anim.SetTrigger(anim_Death);
+            if (!anim.HasState(Animator.StringToHash("Base Layer"), anim_Death))
+            {
+                Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -153,6 +167,8 @@ public class WalkingDemon : Enemy {
                 GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(1.0F);
                 state = AIstate.STOPPED;
                 stateTimer = 2F;
+
+                anim = GetComponentInChildren<Animator>();
             } else
             {
                 GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(.4F);
