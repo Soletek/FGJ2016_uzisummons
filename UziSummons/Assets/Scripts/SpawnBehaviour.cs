@@ -17,7 +17,7 @@ public class SpawnBehaviour : MonoBehaviour {
     int levelNumber = 1;
 	// Use this for initialization
 	void Start () {
-        LoadLevelData("level1.txt");
+        LoadLevelData("level2.txt");
 	}
 	
 	// Update is called once per frame

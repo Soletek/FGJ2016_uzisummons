@@ -32,6 +32,7 @@ public class FlyingDemon : Enemy
         }
 
         // Level music (temp maybe)
+        if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
         audioHandler.SwapMusicTrack(0);
     }
 

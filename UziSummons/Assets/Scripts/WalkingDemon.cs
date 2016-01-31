@@ -29,7 +29,8 @@ public class WalkingDemon : Enemy {
         }
 
         // Boss music (temp maybe)
-        audioHandler.SwapMusicTrack(1);
+        if (audioHandler == null) audioHandler = GameObject.Find("AudioHandler").GetComponent<AudioHandler>();
+        audioHandler.SwapMusicTrack(-1);
     }
 
     protected override void UpdateAI()
@@ -148,6 +149,7 @@ public class WalkingDemon : Enemy {
             if (state == AIstate.SUMMONED)
             {
                 audioHandler.PlaySound("ImpactMetal_big");
+                audioHandler.SwapMusicTrack(1);
                 GameObject.Find("Main Camera").GetComponent<CameraShake>().InvokeShake(1.0F);
                 state = AIstate.STOPPED;
                 stateTimer = 2F;

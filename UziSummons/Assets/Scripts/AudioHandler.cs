@@ -7,6 +7,8 @@ public class AudioHandler : MonoBehaviour {
 
     public AudioClip[] music;
     int currentMusic = -1;
+    float musicFadeVolume = 1;
+    bool fade = false;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +17,13 @@ public class AudioHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (fade)
+        {
+            musicFadeVolume -= Time.deltaTime * 1.5F;
+            GetComponent<AudioSource>().volume = musicFadeVolume;
+            if (musicFadeVolume <= 0) fade = false;
+        }
+    }
 
     // ids
     //  -1 = silence;
@@ -33,10 +40,12 @@ public class AudioHandler : MonoBehaviour {
 
         if (id == -1)
         {
-            GetComponent<AudioSource>().Stop();
+            musicFadeVolume = 1.0F;
+            fade = true;
         }
         else
         {
+            GetComponent<AudioSource>().volume = 1.0F;
             GetComponent<AudioSource>().clip = music[id];
             GetComponent<AudioSource>().Play();
         }
