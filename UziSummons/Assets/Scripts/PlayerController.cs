@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 					else{
-					if (Shootingcooldown > 0) {
+					if (Shootingcooldown <= 0) {
 						Shootingcooldown = Firerate;
 						audioHandler.PlaySound ("Dry Fire Gun");
 					}
