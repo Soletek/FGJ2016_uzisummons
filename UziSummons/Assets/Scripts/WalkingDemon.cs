@@ -53,26 +53,32 @@ public class WalkingDemon : Enemy {
             {
                 rotation = (rotation + 1) % 3;
 
+                if (Random.Range(0, 3) > 0)
+                {
+                    int sndNum = Random.Range(2, 5);
+                    audioHandler.PlaySound("Demon laughter" + sndNum);
+                }
+
                 if (rotation == 0)
                 {
                     state = AIstate.ATTACKING_2;
                     stateTimer = 0.5F;
                     substate = 0;
-                    anim.SetTrigger(anim_A1);
+                    //anim.SetTrigger(anim_A1);
                 }
 
                 if (rotation == 1)
                 {
                     state = AIstate.ATTACKING_1;
                     stateTimer = 4F;
-                    anim.SetTrigger(anim_A2);
+                    //anim.SetTrigger(anim_A2);
                 }
 
                 if (rotation == 2)
                 {
                     state = AIstate.WALKING;
                     stateTimer = 2.8F;
-                    anim.SetTrigger(anim_Dash);
+                    //anim.SetTrigger(anim_Dash);
                 }
 
             }
@@ -98,7 +104,7 @@ public class WalkingDemon : Enemy {
             {
                 state = AIstate.STOPPED;
                 stateTimer = 1.5F;
-                anim.SetTrigger(anim_A2_end);
+                //anim.SetTrigger(anim_A2_end);
             }
 
             if (shootingCooldown < 0) Shoot();
@@ -147,7 +153,7 @@ public class WalkingDemon : Enemy {
 
         if (!isAlive)
         {
-            anim.SetTrigger(anim_Death);
+            //anim.SetTrigger(anim_Death);
             if (!anim.HasState(Animator.StringToHash("Base Layer"), anim_Death))
             {
                 Instantiate(destruction, transform.position, Quaternion.LookRotation(new Vector3(0, 1, 0)));
