@@ -169,7 +169,7 @@ public class WalkingDemon : Enemy {
         GameObject bullet = (GameObject)Instantiate(projectilePrefab, (Vector2)transform.position + shootvector * 0.4F, new Quaternion(0, 0, 0, 0));
         ProjectileScript projectileScript = bullet.GetComponent<ProjectileScript>();
         projectileScript.Speed = 18F;
-        projectileScript.damage = 30F;
+        projectileScript.damage = 15F;
         projectileScript.gravity = -20F;
         projectileScript.GiveDirection(shootvector);
     }
@@ -183,7 +183,7 @@ public class WalkingDemon : Enemy {
             GameObject bullet = (GameObject)Instantiate(projectilePrefab2, (Vector2)transform.position + shootvector * 0.4F, new Quaternion(0, 0, 0, 0));
             ProjectileScript projectileScript = bullet.GetComponent<ProjectileScript>();
             projectileScript.Speed = 24F;
-            projectileScript.damage = 40F;
+            projectileScript.damage = 25F;
             projectileScript.GiveDirection(shootvector);
         }
     }

@@ -2,22 +2,23 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SpawnBehaviour : MonoBehaviour {
     [SerializeField]
     float currentNewWaveTimer = 0.0f;
     [SerializeField]
     float currentWaveEnemySpawnTimer = 0.0f;
-    Level currentLevel;
+    public Level currentLevel;
     [SerializeField]
     int currentWave = 0;
     bool waveSpawnedCompletely = false;
     public GameObject player;
     public List<GameObject> enemiesInScene;
-    int levelNumber = 1;
+    public int levelNumber = 3;
 	// Use this for initialization
 	void Start () {
-        LoadLevelData("level2.txt");
+        LoadLevelData("level" + levelNumber + ".txt");
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,7 @@ public class SpawnBehaviour : MonoBehaviour {
         } else {
             // could be invoked, but dunno if it is better
             // decrease the amount of enemies in a wave by one and spawn a new one and reset spawntimer
-            if (currentWaveEnemySpawnTimer > currentLevel.waveLength)
+            if (currentWaveEnemySpawnTimer >= currentLevel.waveLength)
             {
                 currentWaveEnemySpawnTimer = 0.0f;
                 try {
@@ -61,7 +62,6 @@ public class SpawnBehaviour : MonoBehaviour {
     // will not spawn a new wave unless all enemies are dead
     void SpawnWave() {
         enemiesInScene.Remove(null);
-        Debug.Log(currentLevel.enemies[currentWave].spawnNextImmediatly);
         if(enemiesInScene.Count > 0 && currentLevel.enemies[currentWave].spawnNextImmediatly == "no")
         {
             return;
@@ -79,7 +79,11 @@ public class SpawnBehaviour : MonoBehaviour {
             }
             catch
             {
-                
+                //
+            }
+            if (levelNumber >= 5)
+            {
+                SceneManager.LoadScene(2);
             }
         }
         else {
@@ -93,6 +97,9 @@ public class SpawnBehaviour : MonoBehaviour {
         string path = "LevelData/" + levelName.Replace(".txt", "");  
         string jsonData = Resources.Load<TextAsset>(path).text;
         currentLevel = JsonUtility.FromJson<Level>(jsonData);
+        currentWave = 0;
+        currentWaveEnemySpawnTimer = 0;
         currentNewWaveTimer = 0.0f;
+        waveSpawnedCompletely = false;
     }
 }
