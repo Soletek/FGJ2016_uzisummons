@@ -6,6 +6,7 @@ public class AudioHandler : MonoBehaviour {
     public GameObject audioPrefab;
 
     public AudioClip[] music;
+    int currentMusic = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,13 @@ public class AudioHandler : MonoBehaviour {
     //  1 = boss;
     public void SwapMusicTrack(int id)
     {
+        if (id == currentMusic)
+        {
+            return;
+        }
+
+        currentMusic = id;
+
         if (id == -1)
         {
             GetComponent<AudioSource>().Stop();

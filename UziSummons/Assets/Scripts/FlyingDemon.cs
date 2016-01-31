@@ -30,6 +30,9 @@ public class FlyingDemon : Enemy
             patternDir = (data.pattern == 2) ? 1 : -1;
             transform.position = new Vector3(-11 * patternDir, 6, 0);
         }
+
+        // Level music (temp maybe)
+        audioHandler.SwapMusicTrack(0);
     }
 
     void FixedUpdate()

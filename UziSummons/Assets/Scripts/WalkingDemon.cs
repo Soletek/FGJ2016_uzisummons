@@ -27,6 +27,9 @@ public class WalkingDemon : Enemy {
             patternDir = -1;
             transform.position = new Vector3(7, 11, 0);
         }
+
+        // Boss music (temp maybe)
+        audioHandler.SwapMusicTrack(1);
     }
 
     protected override void UpdateAI()
