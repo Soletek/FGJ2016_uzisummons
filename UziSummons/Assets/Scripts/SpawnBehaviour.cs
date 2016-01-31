@@ -17,7 +17,7 @@ public class SpawnBehaviour : MonoBehaviour {
     int levelNumber = 1;
 	// Use this for initialization
 	void Start () {
-        LoadLevelData("level2.txt");
+        LoadLevelData("level1.txt");
 	}
 	
 	// Update is called once per frame
@@ -25,7 +25,7 @@ public class SpawnBehaviour : MonoBehaviour {
         currentNewWaveTimer += Time.deltaTime;
         // spawn a new wave when we have spawned all enemies in a wave but no sooner than wavetimer
         if(currentNewWaveTimer > currentLevel.waveSpawnTimer && waveSpawnedCompletely) {
-                SpawnWave();
+            SpawnWave();
         } else {
             // could be invoked, but dunno if it is better
             // decrease the amount of enemies in a wave by one and spawn a new one and reset spawntimer
@@ -61,6 +61,7 @@ public class SpawnBehaviour : MonoBehaviour {
     // will not spawn a new wave unless all enemies are dead
     void SpawnWave() {
         enemiesInScene.Remove(null);
+        Debug.Log(currentLevel.enemies[currentWave].spawnNextImmediatly);
         if(enemiesInScene.Count > 0 && currentLevel.enemies[currentWave].spawnNextImmediatly == "no")
         {
             return;
@@ -71,13 +72,14 @@ public class SpawnBehaviour : MonoBehaviour {
             // get next level
 
             levelNumber += 1;
-            try {
-                string path = "LevelData/level" + levelNumber.ToString() + ".txt";
+            try
+            {
+                string path = "level" + levelNumber.ToString() + ".txt";
                 LoadLevelData(path);
             }
             catch
             {
-                Debug.Log("LevelData/level" + levelNumber.ToString() + ".txt");
+                
             }
         }
         else {

@@ -53,7 +53,7 @@ public class WalkingDemon : Enemy {
                 if (rotation == 1)
                 {
                     state = AIstate.ATTACKING_1;
-                    stateTimer = 5F;
+                    stateTimer = 4F;
                 }
 
                 if (rotation == 2)
@@ -67,14 +67,15 @@ public class WalkingDemon : Enemy {
 
         if (state == AIstate.WALKING)
         {
-            transform.position = new Vector3(patternDir * (stateTimer * 5F - 7), transform.position.y, 0);
-
             if (stateTimer < 0)
             {
-                transform.position = new Vector3(patternDir * -7, transform.position.y, 0);
+                transform.position = new Vector3(-patternDir * -7, transform.position.y, 0);
                 patternDir = patternDir * -1;
                 state = AIstate.STOPPED;
                 stateTimer = 1.5F;
+            } else
+            {
+                transform.position = new Vector3(-patternDir * (stateTimer * 5F - 7), transform.position.y, 0);
             }
         }
 
@@ -129,13 +130,6 @@ public class WalkingDemon : Enemy {
 
         // simulate gravity
         rbody.AddForce(new Vector3(0, -150F, 0));
-
-        if (state == AIstate.WALKING)
-        {
-            // move
-            rbody.AddForce(new Vector3(200F * patternDir, 0, 0));
-            rbody.AddForce(new Vector3(200F * patternDir, 0, 0));
-        }
 
         if (!isAlive)
         {
