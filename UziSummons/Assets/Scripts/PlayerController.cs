@@ -109,10 +109,10 @@ public class PlayerController : MonoBehaviour {
 			} else {
 				
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (Input.GetAxis ("Horizontal") * speed, GetComponent<Rigidbody2D> ().velocity.y);
-				if (Input.GetAxis ("Horizontal") > 0.0f) {
+				if (Input.GetAxis ("RightstickHori") > 0.0f) {
 					Islookingright = true;
 					//Play running animation
-				} else if (Input.GetAxis ("Horizontal") < 0.0f) {
+				} else if (Input.GetAxis ("RightstickHori") < 0.0f) {
 					Islookingright = false;
 					//Play running animation
 				} else {
